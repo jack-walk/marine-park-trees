@@ -36,17 +36,18 @@ body {
    =========================================== */
 p,
 section {
-  max-width: 550px;
+  max-width: 860px;
   margin: 12px auto;
 }
 
 p {
+  padding: 0 20px;
   font-size: 17px;
   line-height: 1.35;
 }
 
 section {
-  padding: 0;
+  padding: 0 20px;
 }
 
 img {
@@ -266,6 +267,9 @@ section.last {
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   white-space: nowrap;
@@ -300,6 +304,9 @@ section.last {
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   white-space: nowrap;
@@ -340,6 +347,9 @@ section.last {
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   max-width: none;
@@ -456,6 +466,9 @@ section.last {
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-bottom: 0;
@@ -831,6 +844,9 @@ section.last {
   border-radius: 4px;
   font-size: 14px;
   font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -984,6 +1000,7 @@ section.last {
   }
 
   p {
+    padding: 0;
     font-size: 16px;
     line-height: 1.4;
   }
