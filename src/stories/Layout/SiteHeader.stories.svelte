@@ -2,11 +2,12 @@
   SiteHeader.stories.svelte
 
   Stories for the SiteHeader component.
-  SiteHeader displays the NYCity News Service masthead with an animated gradient
-  background and optional navigation links.
+  SiteHeader displays the top navigation bar used across the site.
 
   Props:
-  - navLinks: Array of { href, label } objects for navigation items
+  - brandLabel: Left-side brand label
+  - websiteLabel / websiteHref: First right-side link
+  - githubLabel / githubHref: Second right-side link
 -->
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf';
@@ -21,30 +22,42 @@
       layout: 'fullscreen',
     },
     argTypes: {
-      navLinks: {
-        control: 'object',
-        description:
-          'Array of navigation link objects with href and label properties',
+      brandLabel: {
+        control: 'text',
+        description: 'Brand label displayed on the left side of the nav',
+      },
+      websiteLabel: {
+        control: 'text',
+        description: 'Label for the website link',
+      },
+      websiteHref: {
+        control: 'text',
+        description: 'URL for the website link',
+      },
+      githubLabel: {
+        control: 'text',
+        description: 'Label for the GitHub link',
+      },
+      githubHref: {
+        control: 'text',
+        description: 'URL for the GitHub link',
       },
     },
   });
 </script>
 
-<!-- Default: header with the standard navigation links -->
+<!-- Default: top navigation bar -->
 <Story name="Default" />
 
-<!-- No Navigation: header with nav links removed -->
-<Story name="No Navigation" args={{ navLinks: [] }} />
-
-<!-- Single Link: header with just one navigation item -->
+<!-- Custom label / link text -->
 <Story
-  name="Single Link"
+  name="Custom"
   args={{
-    navLinks: [
-      {
-        href: 'https://www.nycitynewsservice.com/nycns_topics/education/',
-        label: 'Education',
-      },
-    ],
+    brandLabel: 'REPORTING BY JACK WALKER',
+    websiteLabel: 'Website',
+    websiteHref: 'https://jackwalker.xyz',
+    githubLabel: 'Github',
+    githubHref: 'https://github.com/jack-walk',
   }}
 />
+

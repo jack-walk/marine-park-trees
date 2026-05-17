@@ -1,138 +1,4 @@
-/* Global styles for NYCity News Service style site */
-/* These apply to every page */
-
-/* ---------- SCSS Imports ---------- */
-@use '$lib/styles' as *;
-
-/* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Droid+Sans:wght@400;700&display=swap');
-
-/* ===========================================
-   CSS Custom Properties
-   =========================================== */
-:root {
-  /* NYCity News Service Colors */
-  --color-accent: #0033a1; /* CUNY Blue (PMS 286) */
-  --color-dark: #1a1a1a;
-  --color-text: #333333;
-  --color-white: #ffffff;
-  --color-light-gray: #f5f5f5;
-  --color-medium-gray: #666666;
-  --color-border: #e0e0e0;
-  --color-shadow: rgba(0, 0, 0, 0.1);
-
-  /* CUNY Blue Gradient Colors */
-  --color-cuny-blue-dark: #002266;
-  --color-cuny-blue-light: #0066cc;
-
-  /* Typography */
-  --font-serif: 'PT Serif', Georgia, 'Times New Roman', Times, serif;
-  --font-sans:
-    'Droid Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  /* Root Font Sizes */
-  --font-size-root: 16px;
-  --font-size-root-mobile: 15px;
-
-  /* Font Sizes */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.375rem; /* 22px */
-  --font-size-3xl: 1.5rem; /* 24px */
-  --font-size-4xl: 1.75rem; /* 28px */
-  --font-size-5xl: 2rem; /* 32px */
-  --font-size-6xl: 2.75rem; /* 44px */
-  --font-size-display: 3rem; /* 48px */
-
-  /* Font Weights */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-
-  /* Line Heights */
-  --leading-tight: 1.15;
-  --leading-snug: 1.3;
-  --leading-caption: 1.4;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.75;
-  --leading-loose: 1.8;
-  --leading-heading: 1.2;
-
-  /* Letter Spacing */
-  --letter-spacing-tight: -0.01em;
-  --letter-spacing-wide: 0.02em;
-  --letter-spacing-wider: 0.05em;
-
-  /* Spacing - use these for consistent margins and padding */
-  --spacing-xxs: 0.25rem; /* 4px */
-  --spacing-xs: 0.5rem; /* 8px */
-  --spacing-sm: 1rem; /* 16px */
-  --spacing-md: 1.5rem; /* 24px */
-  --spacing-lg: 2rem; /* 32px */
-  --spacing-xl: 3rem; /* 48px */
-  --spacing-xxl: 4rem; /* 64px */
-
-  /* Layout */
-  --max-width: 800px;
-  --max-width-wide: 1200px;
-  --max-width-image-large: 720px;
-  --max-width-image-medium: 480px;
-  --max-width-image-small: 320px;
-  --max-width-footer-logo: 400px;
-  --site-chrome-height: 200px;
-
-  /* Dashboard Layout */
-  --dashboard-item-min-width: 200px;
-  --dashboard-item-max-width: 300px;
-
-  /* Logo Padding */
-  --logo-padding-mobile: 0.15rem 0.35rem;
-  --logo-padding-desktop: 0.2rem 0.4rem;
-
-  /* Border Widths */
-  --border-width-thin: 1px;
-  --border-width-divider: 2px;
-  --border-width-accent: 4px;
-
-  /* Border Radius */
-  --border-radius-sm: 8px;
-
-  /* Transitions */
-  --transition-color: color 0.2s ease;
-  --transition-opacity: opacity 0.2s ease;
-
-  /* Opacity */
-  --opacity-hover: 0.8;
-  --opacity-hover-faint: 0.7;
-
-  /* Dropcap */
-  --dropcap-font-size: 3.5em;
-  --dropcap-line-height: 1;
-  --dropcap-margin-right: 0.05em;
-  --dropcap-color: var(--color-accent);
-}
-
-/* ===========================================
-   Dropcap Gradient Animation
-   =========================================== */
-@keyframes dropcap-gradient {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* ===========================================
    CSS Reset
@@ -145,97 +11,976 @@
   padding: 0;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html {
-  font-size: var(--font-size-root);
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  line-height: var(--leading-normal);
-  color: var(--color-text);
-  background-color: var(--color-white);
+  font-family: 'Georgia', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333333;
+  background-color: #ffffff;
 }
+
 /* ===========================================
-   Typography
+   General Styles
    =========================================== */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-serif);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--leading-tight);
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-dark);
-}
-
-h1 {
-  font-size: var(--font-size-6xl);
-  font-weight: var(--font-weight-normal);
-}
-
-h2 {
-  font-size: var(--font-size-4xl);
-}
-
-h3 {
-  font-size: var(--font-size-3xl);
-}
-
-p {
-  margin-bottom: var(--spacing-sm);
-}
-
-a {
-  color: var(--color-dark);
-  text-decoration: underline;
-  transition: var(--transition-color);
-}
-
-a:hover {
-  color: var(--color-accent);
+p,
+section {
+  max-width: 550px;
+  margin: 10px auto;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  border: outset;
+  border-color: #566500;
+  padding: 5px;
+  border-width: 4px;
+}
+
+/* Link styles */
+a {
+  color: #478bb8;
+}
+
+a:hover {
+  background: #e6e6e6;
+}
+
+/* Article padding */
+p.ex1 {
+  padding-top: 25px;
+}
+
+/* ===========================================
+   Body Styles
+   =========================================== */
+body {
+  font-family: 'Georgia', sans-serif;
+}
+
+/* ===========================================
+   Header Styles
+   =========================================== */
+header {
+  text-align: center;
+  font-family: 'Verdana', sans-serif;
+}
+
+header h1 {
+  max-width: 760px;
+  margin: 10px auto;
+  text-align: left;
+  color: #566500;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  font-size: 40px;
+}
+
+header h2,
+h3 {
+  max-width: 750px;
+  font-size: 18px;
+  margin: 10px auto;
+  text-align: left;
+}
+
+header h2 {
+  font-family: Verdana;
+  font-weight: normal;
+  font-style: italic;
+}
+
+header h3 {
+  font-size: 14px;
+  font-family: Verdana;
+  font-weight: normal;
+}
+
+/* Header component layout */
+header.storyHeader {
+  display: grid;
+  grid-template-columns: 440px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 40px;
+  max-width: 1040px;
+  margin: 0 auto 24px;
+  padding: 40px 20px 0;
+  text-align: left;
+}
+
+.storyHeader__media {
+  width: 400px;
+}
+
+.storyHeader__media img {
   display: block;
-}
-
-/* ===========================================
-   Layout Utilities
-   =========================================== */
-.container {
   width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  height: auto;
+  max-width: 410px;
 }
 
-.container.wide {
-  max-width: var(--max-width-wide);
+.storyHeader__content {
+  min-width: 0;
+  width: 100%;
+  max-width: 550px;
+  margin-bottom: 20px;
+}
+
+.storyHeader__content h1,
+.storyHeader__content h2,
+.storyHeader__content h3 {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 520px;
+}
+
+.storyHeader__content h1 {
+  padding-top: 90px;
+}
+
+.storyHeader__content h2 {
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.storyHeader__content h3 {
+  margin-bottom: 24px;
+  padding-bottom: 55px;
 }
 
 /* ===========================================
-   Responsive Typography
+   Banner and Image Styles
    =========================================== */
-@include mobile {
-  html {
-    font-size: var(--font-size-root-mobile);
-  }
-  h1 {
-    font-size: var(--font-size-4xl);
+figure.banner {
+  display: inline-block;
+  text-align: center;
+  max-width: 100%;
+  margin: 0px auto;
+  padding: 40px 0;
+}
+
+figcaption.bannerCaption {
+  font-size: 12px;
+  text-align: right;
+  margin-left: 20px;
+}
+
+/* ===========================================
+   Section Headers
+   =========================================== */
+.content-block h2 {
+  margin-top: 30px;
+  margin-bottom: -5px;
+}
+
+/* ===========================================
+   Chart Styles
+   =========================================== */
+p.chartWrapper {
+  margin: 40px auto;
+  max-width: 700px;
+  padding: 10px 20px;
+  border: 5px double #566500;
+}
+
+/* ===========================================
+   Twitter Embed Styles
+   =========================================== */
+.twitter-tweet {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin: 10px auto;
+}
+
+/* ===========================================
+   Final Section Styles
+   =========================================== */
+section.last {
+  margin-bottom: 25px;
+}
+
+/* ===========================================
+   Credit Line Styles
+   =========================================== */
+#credit {
+  text-align: right;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* ===========================================
+   Button Styles
+   =========================================== */
+.view-data-btn {
+  display: block;
+  margin: 40px auto;
+  padding: 15px 40px;
+  background-color: #566500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 200px;
+}
+
+.view-data-btn:hover {
+  background-color: #478bb8;
+}
+
+.view-data-btn:active {
+  transform: scale(0.98);
+}
+
+/* Navigation button styles */
+.nav-button {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 12px 30px;
+  background-color: #566500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.nav-button:hover {
+  background-color: #478bb8;
+}
+
+.nav-button:active {
+  transform: scale(0.98);
+}
+
+/* Button Pair Container Styles */
+.button-pair-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px auto;
+  width: fit-content;
+}
+
+.button-pair-btn {
+  display: inline-block;
+  padding: 15px 25px;
+  background-color: #566500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  line-height: 1;
+  height: fit-content;
+  vertical-align: middle;
+}
+
+.button-pair-btn:hover {
+  background-color: #478bb8;
+}
+
+.button-pair-btn:active {
+  transform: scale(0.98);
+}
+
+.button-pair-container .view-data-btn {
+  display: inline-block;
+  margin: 0;
+  max-width: none;
+}
+
+.button-pair-container .compare-zip-codes-btn {
+  display: inline-block;
+  margin: 0;
+}
+
+/* Back Button Styles */
+.back-btn {
+  display: block;
+  margin: 40px auto;
+  padding: 12px 30px;
+  background-color: #566500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 150px;
+}
+
+.back-btn:hover {
+  background-color: #478bb8;
+}
+
+.back-btn:active {
+  transform: scale(0.98);
+}
+
+/* ===========================================
+   Compare Zip Codes Page Styles
+   =========================================== */
+.compare-intro {
+  display: none;
+}
+
+/* ===========================================
+   Zip Code Comparison Tool Styles
+   =========================================== */
+.zip-comparison-tool {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.zip-comparison-tool h1 {
+  color: #566500;
+  font-size: 32px;
+  margin-bottom: 15px;
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+.zip-comparison-tool > p {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-section {
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 0;
+  border-left: 4px solid #566500;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: inline-block;
+  width: min(100%, 420px);
+  margin-bottom: 0;
+}
+
+.search-section label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #566500;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.zip-code-input {
+  box-sizing: border-box;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #566500;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.zip-code-input:focus {
+  outline: none;
+  border-color: #478bb8;
+  background-color: #fffef5;
+}
+
+.search-btn {
+  padding: 12px 30px;
+  background-color: #566500;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.search-btn:hover {
+  background-color: #478bb8;
+}
+
+.search-btn:active {
+  transform: scale(0.98);
+}
+
+.suggestions-box {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.suggestion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item-topline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.suggestion-item:hover,
+.suggestion-item:focus {
+  background-color: #eef3e8;
+  outline: none;
+}
+
+.suggestion-item-label {
+  font-weight: 700;
+  color: #333;
+  font-size: 14px;
+}
+
+.suggestion-item-detail {
+  font-size: 12px;
+  color: #666;
+}
+
+.suggestion-item + .suggestion-item {
+  margin-top: 2px;
+}
+
+/* ===========================================
+   Results Section Styles
+   =========================================== */
+.results-section {
+  margin-top: 30px;
+}
+
+.results-content {
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border-left: 5px solid #566500;
+}
+
+#zip-code-header {
+  color: #566500;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat';
+}
+
+.result-card {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.result-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #999;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.result-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #566500;
+}
+
+.result-detail {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.total-complaints .result-value {
+  color: #478bb8;
+}
+
+.ranking .result-value {
+  color: #d4a574;
+}
+
+.result-subheader {
+  margin-top: -8px;
+  margin-bottom: 14px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.result-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.result-tag {
+  background-color: #eaf0e5;
+  color: #566500;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* ===========================================
+   Complaints by Type Styles
+   =========================================== */
+.complaints-by-type {
+  margin-top: 25px;
+}
+
+.complaints-by-type h3 {
+  font-size: 18px;
+  color: #566500;
+  margin-bottom: 15px;
+  font-family: 'Montserrat';
+}
+
+.complaints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.complaint-type-item {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.complaint-type-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.complaint-type-name {
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  text-align: left;
+}
+
+.complaint-type-count {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.complaint-type-bar {
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.complaint-type-bar-fill {
+  height: 100%;
+  background-color: #566500;
+  transition: width 0.3s ease;
+}
+
+.complaint-type-count.no-data {
+  color: #999;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.no-data-item {
+  opacity: 0.7;
+  background-color: #fafafa;
+}
+
+.complaint-section-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 12px;
+}
+
+.complaint-section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.complaint-section-title {
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+}
+
+.complaint-section-total {
+  font-weight: 700;
+  color: #566500;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.complaint-section-total.no-data {
+  color: #999;
+  font-style: italic;
+}
+
+.complaint-subitems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.complaint-subitem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.complaint-subitem.no-data {
+  color: #999;
+  font-style: italic;
+}
+
+.complaint-subitem-label {
+  flex: 1;
+  text-align: left;
+}
+
+.complaint-subitem-value {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.zip-result-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #566500;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.zip-result-card--nested {
+  margin-top: 14px;
+}
+
+.zip-result-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.zip-result-kicker {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.zip-result-title {
+  margin: 0;
+  font-size: 22px;
+  color: #566500;
+  font-family: 'Montserrat';
+}
+
+.zip-result-subtitle {
+  color: #666;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.zip-result-meta {
+  text-align: right;
+  min-width: 160px;
+}
+
+.zip-result-total {
+  font-size: 28px;
+  font-weight: 700;
+  color: #478bb8;
+  line-height: 1;
+}
+
+.zip-result-meta-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.zip-result-meta-rank {
+  font-size: 13px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.zip-result-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-again-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 30px;
+  background-color: #478bb8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-again-btn:hover {
+  background-color: #566500;
+}
+
+.search-again-btn:active {
+  transform: scale(0.98);
+}
+
+/* ===========================================
+   Error and No Results Styles
+   =========================================== */
+.error-section,
+.no-results-section {
+  background-color: #ffe6e6;
+  border: 1px solid #ff9999;
+  border-radius: 6px;
+  padding: 15px;
+  color: #c00;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.no-results-section {
+  background-color: #fffacd;
+  border-color: #ffeb3b;
+  color: #666;
+}
+
+/* ===========================================
+   Responsive Design
+   =========================================== */
+@media (max-width: 800px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
-  h2 {
-    font-size: var(--font-size-3xl);
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 
-  h3 {
-    font-size: var(--font-size-xl);
+  header.storyHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 12px 0;
+    margin-bottom: 16px;
+  }
+
+  .storyHeader__media,
+  .storyHeader__content {
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .storyHeader__media {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .storyHeader__media img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .storyHeader__content {
+    min-width: 0;
+    margin-bottom: 16px;
+  }
+
+  .storyHeader__content h1 {
+    padding-top: 12px;
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .storyHeader__content h2 {
+    padding-top: 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .storyHeader__content h3 {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    font-size: 13px;
+  }
+
+  img {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    padding: 0;
+    border-width: 0;
+  }
+
+  figure.banner,
+  .extraPhoto {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  figure.banner img,
+  .extraPhoto img,
+  .content-block img {
+    display: block;
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p.chartWrapper {
+    max-width: calc(100% - 24px);
+    margin: 40px auto;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .twitter-tweet {
+    max-width: calc(100% - 24px);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+  .button-pair-container {
+    flex-direction: column;
+  }
+
+  .button-pair-btn {
+    flex: none;
+    width: 100%;
+  }
+
+  .zip-code-input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+
+  .complaint-type-info {
+    flex-direction: column;
+  }
+
+  .complaint-type-count {
+    text-align: left;
+  }
+
+  .result-value {
+    font-size: 24px;
+  }
+
+  #zip-code-header {
+    font-size: 20px;
   }
 }

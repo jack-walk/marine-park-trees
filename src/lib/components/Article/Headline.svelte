@@ -1,36 +1,36 @@
 <!--
 @component
-Headline.svelte — A large serif h1 headline shared by ArticleHeader and DatabaseHeader.
-
-Displays the provided text as a bold serif heading in the site dark color with
-tight line-height. Font size steps up at the tablet breakpoint.
-
-USAGE EXAMPLE:
-<Headline text="City Council Approves New Budget" />
+Headline.svelte — Large Montserrat headline used in the story header.
 -->
 <script>
   let {
-    text = '', // The headline text to display
+    text = '',
   } = $props();
 </script>
 
 {#if text}
-  <h1 class="headline">{text}</h1>
+  <h1 class="headline">{@html text}</h1>
 {/if}
 
 <style lang="scss">
   @use '../../styles' as *;
 
   .headline {
-    font-family: var(--font-serif);
-    font-size: var(--font-size-5xl);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--leading-tight);
-    color: var(--color-dark);
-    margin-bottom: var(--spacing-sm);
+    max-width: 760px;
+    margin: 10px auto;
+    text-align: left;
+    color: #566500;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    font-size: 40px;
+    line-height: 1;
+  }
 
-    @include tablet {
-      font-size: var(--font-size-6xl);
+  @media (max-width: 800px) {
+    .headline {
+      padding-top: 12px;
+      font-size: 28px;
+      line-height: 1.15;
     }
   }
 </style>

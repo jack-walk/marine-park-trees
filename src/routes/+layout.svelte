@@ -10,7 +10,6 @@ Use it for headers, footers, and navigation that appear on all pages.
 
   // Import site-wide components
   import SiteHeader from '$lib/components/Layout/SiteHeader.svelte';
-  import SiteFooter from '$lib/components/Layout/SiteFooter.svelte';
 
   // Access page-level settings (from +page.js)
   import { page } from '$app/state';
@@ -27,10 +26,6 @@ Use it for headers, footers, and navigation that appear on all pages.
   <!-- This renders the current page's content -->
   {@render children()}
 </main>
-
-{#if page.data.showFooter !== false}
-  <SiteFooter />
-{/if}
 
 <style>
   /* Styles here only apply to this layout */

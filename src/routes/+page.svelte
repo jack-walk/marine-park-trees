@@ -3,120 +3,236 @@
 This is your page!
 -->
 <script>
-  // Import all the news furniture components
-  import ArticleHeader from '$lib/components/Article/ArticleHeader.svelte';
-  import ArticleBody from '$lib/components/Article/ArticleBody.svelte';
-  import Blockquote from '$lib/components/Article/Blockquote.svelte';
-  import Image from '$lib/components/Media/Image.svelte';
-  import RelatedLinks from '$lib/components/Article/RelatedLinks.svelte';
+	import { base } from '$app/paths';
+	import Headline from '$lib/components/Article/Headline.svelte';
+	import ButtonPair from '$lib/components/Layout/ButtonPair.svelte';
 
-  // Article metadata
-  let headline = 'Become a force for good. Join our next class.';
-  let byline = 'NYCity News Service';
-  let pubDate = '2026-01-31';
+	const headline =
+		'Marine Park residents have complained about <span style="color:#302a03;">tree maintenance</span> for years. Are parks officials listening?';
 
-  // Related stories
-  const relatedStories = [
-    {
-      headline:
-        "How America's top news organizations escape rigid publishing systems to design beautiful data-driven stories on deadline.",
-      href: 'https://palewi.re/docs/coding-the-news/',
-    },
-    {
-      headline:
-        'How to install, configure and use Visual Studio Code, GitHub and Copilot',
-      href: 'https://palewi.re/docs/coding-the-news/scripts/week-1/',
-    },
-    {
-      headline: 'How to publish a website with Node.JS and GitHub Actions',
-      href: 'https://palewi.re/docs/coding-the-news/scripts/week-2/',
-    },
+	const subheadline =
+		'A new data investigation reveals that the neighborhood ranks first in tree service requests. Residents worry that city officials are overlooking risks to safety and property.';
+
+	const byline = 'By <strong><a href="https://jackwalker.xyz">Jack Walker</a></strong> | May TK, 2026';
+
+	const buttonPair = [
+		{
+			label: 'COMPARE ZIP CODES',
+			href: `${base}/compare`,
+			className: 'compare-zip-codes-btn',
+		},
+		{
+			label: 'ABOUT THIS DATA',
+			href: `${base}/about`,
+			className: 'view-data-btn',
+		},
   ];
 </script>
 
 <!-- This sets the page title in the browser tab -->
 <svelte:head>
-  <title>{headline} | NYCity News Service</title>
+	<title>Marine Park residents have complained about tree maintenance for years. Are parks officials listening?</title>
   <meta
     name="description"
-    content="At the Craig Newmark Graduate School of Journalism at the City University of New York, change is in our DNA. That comes of being born in 2006, as the digital revolution was transforming our profession in ways none of us could have imagined."
+		content="A new data investigation reveals that Marine Park ranks first in tree service requests. Residents worry that city officials are overlooking risks to safety and property."
   />
 </svelte:head>
 
-<!-- Your page content goes here -->
-<div class="container">
-  <!-- Article Header: Headline, byline, and publication date -->
-  <ArticleHeader {headline} {byline} {pubDate} />
+<header class="storyHeader">
+	<div class="storyHeader__media">
+		<img
+			src={`${base}/photos/wires3.JPG`}
+			alt="Utility wires pass through the branches of a tree. Some appear to be caught in the branches."
+		/>
+	</div>
 
-  <!-- Lead Image: Animated gif of students at the journalism school -->
-  <Image
-    src="/example-photo.gif"
-    alt="The Craig Newmark Graduate School of Journalism is at 219 West 40th Street in Midtown Manhattan."
-    caption="The Craig Newmark Graduate School of Journalism is at 219 West 40th Street in Midtown Manhattan."
-    credit="Craig Newmark Graduate School of Journalism"
-  />
+	<div class="storyHeader__content">
+		<Headline {headline} />
+		<h2>{subheadline}</h2>
+		<h3>{@html byline}</h3>
+	</div>
+</header>
 
-  <!-- Article Body: The main story text with proper typography -->
-  <ArticleBody>
-    <p class="dropcap">
-      At the Craig Newmark Graduate School of Journalism at the City University
-      of New York, change is in our DNA. That comes of being born in 2006, as
-      the digital revolution was transforming our profession in ways none of us
-      could have imagined.
-    </p>
+<section>
+	<p>
+		Connie Donohue says trees are taking over her block. She’s spent four decades in the same home, located in a quiet south Brooklyn neighborhood called Marine Park. For about as long, she recalls roots unearthing sidewalk tiles and creeping into sewers; branches sprawling downward and blocking street signs.
+	</p>
 
-    <p>
-      We fashioned a school to teach the latest storytelling, entrepreneurial,
-      and technological skills alongside reporting, writing, and ethics. Beyond
-      that, we’ve crafted a culture that spurns complacency, that isn’t afraid
-      to pivot before the ground under us shifts.
-    </p>
+	<p>
+		“It’s a problem. A lot of the trees are overgrown,” Donohue said. “There’s a general very bad feeling about the tree maintenance in the neighborhood.”
+	</p>
 
-    <p>
-      Our mission is to serve the public interest – by training new journalists
-      from varied economic, racial, and cultural backgrounds who will bring
-      much-needed diversity to newsrooms, by helping mid-career journalists
-      retool their skills, and by partnering with other media organizations to
-      find new paths to excellence.
-    </p>
+	<p>
+		Tree upkeep is a chronic concern in Marine Park, a new data investigation reveals. But many residents worry their calls for assistance have gone unheard by the New York City Department of Parks & Recreation, which is charged with maintaining trees on public land.
+	</p>
 
-    <Blockquote attribution="Craig Newmark Graduate School of Journalism">
-      <p>We invite you to be part of our world.</p>
-    </Blockquote>
+	<p>
+		The Marine Park zip code ranks first in calls to the city’s 311 service line over tree issues. The zip code also ranks third in calls <i>per tree</i>, so it’s not just that having more trees in Marine Park triggers more complaints, either.
+	</p>
 
-    <p>
-      Our low tuition rates, along with the added backing of private donors,
-      allow candidates for our master’s degrees in journalism and engagement
-      journalism to receive a world-class education at an affordable price. We
-      also offer a unique bilingual master’s in journalism for students fluent
-      in English and Spanish.
-    </p>
+	<p>
+		A spokesperson for the parks department denied that Marine Park has more overgrowth than other neighborhoods. But in an email statement, they said the area has a “mature tree population” that may spur more 311 calls.
+	</p>
+</section>
 
-    <p>
-      Our three media centers provide research, training, thought leadership,
-      industry meet-ups, and financial support for quality journalistic work.
-    </p>
+<section>
+	<p class="chartWrapper">
+		<iframe
+			title="Tree complaints per zip code"
+			aria-label="Choropleth chart"
+			id="datawrapper-chart-3I7mH"
+			src="https://datawrapper.dwcdn.net/3I7mH/10/"
+			scrolling="no"
+			frameborder="0"
+			style="width: 0; min-width: 100% !important; border: none;"
+			height="400"
+		></iframe>
+		<script type="text/javascript">
+			!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+		</script>
+	</p>
+</section>
 
-    <p>
-      We also offer a robust professional education program through regular
-      evening and weekend workshops. And we support in-depth reporting projects
-      of professional journalists through fellowship grants.
-    </p>
+<section>
+	<h2>The root of the problem</h2>
 
-    <p>
-      Classes are led by accomplished full-time faculty and adjuncts, who tap
-      their networks to help students and graduates find internships, freelance
-      opportunities and — the ultimate prize — jobs.
-    </p>
+	<p>
+		As trees grow, their root systems and branches get bigger, which warrants regular maintenance. At first blush, tree overgrowth might seem like a minor issue. But trees can block streets, or more easily fall onto property or powerlines. Dead branches are also prone to falling unexpectedly, which <a href="https://gothamist.com/news/falling-tree-kills-pregnant-woman-in-queens-park">can be</a> <a href="https://brooklyn.news12.com/3-people-nearly-crushed-by-falling-tree-in-brooklyn">dangerous</a> for drivers and pedestrians.
+	</p>
 
-    <p>
-      At a time when our profession is reeling from financial pressures and lack
-      of trust, the Newmark Graduate School of Journalism is committed to
-      producing the next generation of skilled, ethically minded, and diverse
-      journalists.
-    </p>
-  </ArticleBody>
+	<p>
+		To make matters worse, New York City is currently behind on a process called tree pruning, where it removes dead and damaged branches. The parks department pruned 44% fewer trees late last summer than it did the year prior, per <a href="https://dmmr.nyc.gov/">a report</a> released by the office of Mayor Zohran Mamdani <a href="https://donbuqm3ub5fw.cloudfront.net/files/2026_pmmr_aca73d6bf8.pdf">this past March</a>.
+	</p>
 
-  <!-- Related Stories: Links to other articles -->
-  <RelatedLinks title="Related Stories" links={relatedStories} />
-</div>
+	<p>
+		At the end of summer 2025, the parks department did not have a contractor to oversee pruning in Brooklyn or Queens due to bidding issues, according to the mayor's report.
+	</p>
+
+	<p>
+		Concerns around the aging tree population in Marine Park have not gone unnoticed. Last year, a storm ripped through the neighborhood, knocking down trees and <a href="https://www.brooklynpaper.com/marine-park-residents-fear-neglected-trees-disaster/">even damaging homes</a>.
+	</p>
+
+	<p>
+		However, the extent of resident concerns, and how it compares to other neighborhoods in New York City, has gone unreported until this investigation. The city’s 311 call records reveal that, in Marine Park and surrounding areas, tree maintenance has been an outsized and years-long issue.
+	</p>
+
+	<p>
+		“We receive complaints daily about overgrown trees with hanging branches,” said Theresa Scavo, chair of Brooklyn Community Board 15, which borders Marine Park, in an email statement. “Most homeowners are fearful of a limb falling and someone being injured on their property.”
+	</p>
+</section>
+
+<section>
+	<header>
+		<figure class="banner">
+			<img
+				src={`${base}/photos/sidewalk.JPG`}
+				alt="Trees line a suburban street."
+			/>
+			<figcaption class="bannerCaption">A tree-lined street of the Marine Park neighborhood. (Photo: Jack Walker)</figcaption>
+		</figure>
+	</header>
+</section>
+
+<section>
+	<p>
+		The parks department schedules tree pruning for different neighborhoods “on a rotating basis,” the parks spokesperson said. The department has scheduled more than 2,000 tree prunings for the Marine Park area to be completed by June 2026, <a href="https://www.nycgovparks.org/services/forestry/tree-pruning">according to its website</a>, but the status of each tree pruning is still labeled as incomplete.
+	</p>
+
+	<p>
+		Residents of Marine Park who were interviewed for this story cast doubt that the parks department keeps up with its own pruning timeline, and said when maintenance staff visit trees they do not prune them enough.
+	</p>
+
+	<p>
+		Residents can also alert the department about tree maintenance needs using the city’s 311 service line, but several residents said the parks department does not respond directly to complaints, making them feel like their concerns are going unheard.
+	</p>
+
+	<p>
+		“There’s so many dead branches on the trees,” said Marine Park resident Pauline Siringo. “I don’t know who’s looking at them, to be quite honest, when I call.”
+	</p>
+
+	<p>
+		The parks spokesperson did not directly respond to follow-up questions about the department’s protocol for following up on 311 complaints, or determining whether a tree needs more pruning.
+	</p>
+</section>
+
+<section>
+	<p class="chartWrapper">
+		<iframe
+			title="Complaints per tree"
+			aria-label="Choropleth chart"
+			id="datawrapper-chart-TJ8T1"
+			src="https://datawrapper.dwcdn.net/TJ8T1/4/"
+			scrolling="no"
+			frameborder="0"
+			style="width: 0; min-width: 100% !important; border: none;"
+			height="400"
+		></iframe>
+		<script type="text/javascript">
+			!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+		</script>
+	</p>
+</section>
+
+<section>
+	<h2>More trees, less maintenance</h2>
+
+	<p>
+		In New York City, trees have become a source of <a href="https://citylimits.org/as-city-plants-trees-benefitsand-some-burdensgrow/">surprising</a> <a href="https://www.nytimes.com/2024/03/13/nyregion/tree-beds-new-york-city.html">controversy</a>. Residents often want more greenery to improve the quality of life in the city. In cities, trees reduce air pollution, cool down streets, manage storm runoff and even improve water quality, <a href="https://www.epa.gov/heatislands/benefits-trees-and-vegetation">according to</a> the U.S. Environmental Protection Agency.
+	</p>
+
+	<p>
+		But concerns over the parks department’s ability to keep up with a growing urban canopy have pushed some long-time residents to view new planting less favorably. Despite their frustrations, Marine Park residents interviewed for this story widely agree they do not want the trees in their neighborhood chopped down.
+	</p>
+
+	<p>
+		The issue, Marine Park residents say, is that city officials are not keeping up with the mature trees that give the neighborhood its charming suburban character. Under city law, locals <a href="https://www.nycgovparks.org/rules/section-1-04/">can’t prune trees</a> without city permission, either.
+	</p>
+
+	<p>
+		“If you grew up in a suburban area, you prune your tree the right way. Get rid of the dead branches,” said Thomas FitzPatrick, a former sanitation worker who grew up nearby in Rockaway. If you prune trees independently in New York City, “parks is going to come down and throw a fine on you.”
+	</p>
+
+	<p>
+		In recent years, the parks department has planted tens of thousands of new trees to widen these benefits to more parts of the city. Mamdani aims to extend tree coverage <a href="https://www.thecity.nyc/2026/04/21/tree-planting-heat-mamdani-parks-canopy/">to 30% of the city</a> by 2040. Some residents are concerned the parks department will not be able to keep up.
+	</p>
+</section>
+
+<section>
+	<header>
+		<figure class="banner">
+			<img
+				src={`${base}/photos/building.JPG`}
+				alt="Pedestrians walk outside a community center. So does a dog on a leash."
+			/>
+			<figcaption class="bannerCaption">The Carmine Carro Community Center in Marine Park. (Photo: Jack Walker)</figcaption>
+		</figure>
+	</header>
+</section>
+
+<section>
+	<p>
+		Community advocacy groups, like the <a href="https://www.marineparkyoungadults.org/">Marine Park Young Adults Association</a>, are working to maintain local trees within the confines of what is legal, like cleaning up tree beds and clearing walkways, said Sam Daniele, the nonprofit’s president.
+	</p>
+
+	<p>
+		That provides some help, but demand for better maintenance from the city itself remains.
+	</p>
+
+	<p>
+		“When you call 311 for issues with trees, I don't want to say they don't take it seriously,” Daniele said. “But they tend to focus on other issues first.”
+	</p>
+
+	<p>
+		For many residents, the lush greenery and quiet character of Marine Park drew them to the neighborhood in the first place. But persistent concerns around the neighborhood’s aging tree population has made a one-time sanctuary feel stressful, even scary.
+	</p>
+
+	<p>
+		“It’s good for the environment. For the oxygen. It’s good for a lot of things,” Donohue said of the neighborhood’s tree coverage. “It’s not so much that we mind the trees.”
+	</p>
+
+	<p>
+		What is scary is the risk poorly maintained trees may pose to the community, she said. “You have to wait for it to actually fall down from a storm before somebody will come and say, ‘Oh yeah, we’re going to cut it down.’”
+	</p>
+</section>
+
+<ButtonPair buttons={buttonPair} />

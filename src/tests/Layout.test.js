@@ -2,33 +2,54 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/svelte';
 import SiteHeader from '$lib/components/Layout/SiteHeader.svelte';
 import SiteFooter from '$lib/components/Layout/SiteFooter.svelte';
+import ButtonPair from '$lib/components/Layout/ButtonPair.svelte';
 
 describe('SiteHeader', () => {
-  it('renders the logo', () => {
+  it('renders the top nav brand', () => {
     render(SiteHeader);
-    expect(screen.getByLabelText('NYCity News Service')).toBeTruthy();
+    expect(screen.getByText('REPORTING BY JACK WALKER')).toBeTruthy();
   });
 
   it('renders default navigation links', () => {
     render(SiteHeader);
-    expect(screen.getByText('Arts & Culture')).toBeTruthy();
-    expect(screen.getByText('Politics')).toBeTruthy();
+    expect(screen.getByText('Website')).toBeTruthy();
+    expect(screen.getByText('Github')).toBeTruthy();
+  });
+
+  it('renders the bunny image', () => {
+    render(SiteHeader);
+    expect(screen.getByAltText('Bunnies')).toBeTruthy();
   });
 
   it('renders custom navigation links', () => {
     render(SiteHeader, {
       props: {
-        navLinks: [{ label: 'Sports', href: '/sports' }],
+        websiteLabel: 'Portfolio',
+        websiteHref: 'https://example.com',
       },
     });
-    expect(screen.getByText('Sports')).toBeTruthy();
+    expect(screen.getByText('Portfolio')).toBeTruthy();
   });
 
-  it('hides nav when navLinks is empty', () => {
-    const { container } = render(SiteHeader, {
-      props: { navLinks: [] },
+  it('renders the nav element', () => {
+    render(SiteHeader);
+    expect(screen.getByLabelText('Site navigation')).toBeTruthy();
+  });
+});
+
+describe('ButtonPair', () => {
+  it('renders navigation buttons', () => {
+    render(ButtonPair, {
+      props: {
+        buttons: [
+          { label: 'COMPARE ZIP CODES', href: '/compare' },
+          { label: 'ABOUT THIS DATA', href: '/about' },
+        ],
+      },
     });
-    expect(container.querySelector('nav')).toBeNull();
+
+    expect(screen.getByText('COMPARE ZIP CODES')).toBeTruthy();
+    expect(screen.getByText('ABOUT THIS DATA')).toBeTruthy();
   });
 });
 
