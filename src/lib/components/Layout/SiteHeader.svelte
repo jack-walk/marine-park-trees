@@ -18,17 +18,22 @@ SiteHeader.svelte — Top navigation used across the site.
   <div class="masthead-wrapper">
     <nav class="top-nav" aria-label="Site navigation">
       <div class="top-nav__section top-nav__section--left">
-        <span class="top-nav__brand-text">{brandLabel}</span>
+        <img
+          class="top-nav__bunny-image top-nav__bunny-image--desktop"
+          src={`${base}/photos/bunnies.png`}
+          alt="Bunnies"
+        />
+        <img
+          class="top-nav__bunny-image top-nav__bunny-image--mobile"
+          src={`${base}/photos/bunnies.png`}
+          alt="Bunnies"
+        />
+        <span class="top-nav__brand-text top-nav__brand-text--mobile">{brandLabel}</span>
       </div>
 
       <div class="top-nav__section top-nav__section--right">
         <a href={websiteHref} class="top-nav__link">{websiteLabel}</a>
         <a href={githubHref} class="top-nav__link">{githubLabel}</a>
-        <img
-          class="top-nav__bunny-image"
-          src={`${base}/photos/bunnies.png`}
-          alt="Bunnies"
-        />
       </div>
     </nav>
   </div>
@@ -96,6 +101,11 @@ SiteHeader.svelte — Top navigation used across the site.
     white-space: nowrap;
     cursor: default;
     font-family: 'Montserrat', sans-serif;
+    display: none;
+  }
+
+  .top-nav__brand-text--mobile {
+    display: none;
   }
 
   .top-nav__bunny-image {
@@ -106,6 +116,14 @@ SiteHeader.svelte — Top navigation used across the site.
     padding: 0;
     border: 0;
     background: transparent;
+  }
+
+  .top-nav__bunny-image--mobile {
+    display: none;
+  }
+
+  .top-nav__bunny-image--desktop {
+    display: inline-block;
   }
 
   @media (max-width: 600px) {
@@ -121,6 +139,14 @@ SiteHeader.svelte — Top navigation used across the site.
 
     .top-nav__bunny-image {
       height: 26px;
+    }
+
+    .top-nav__bunny-image--mobile {
+      display: inline-block;
+    }
+
+    .top-nav__bunny-image--desktop {
+      display: none;
     }
   }
 </style>
