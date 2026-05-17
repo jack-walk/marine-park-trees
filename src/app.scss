@@ -36,18 +36,17 @@ body {
    =========================================== */
 p,
 section {
-  max-width: 760px;
+  max-width: 550px;
   margin: 12px auto;
 }
 
 p {
-  padding: 0 20px;
   font-size: 17px;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 
 section {
-  padding: 0 20px;
+  padding: 0;
 }
 
 img {
@@ -291,8 +290,10 @@ section.last {
 }
 
 .button-pair-btn {
-  display: inline-block;
-  padding: 15px 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
   background-color: #566500;
   color: white;
   border: none;
@@ -328,9 +329,11 @@ section.last {
 
 /* Back Button Styles */
 .back-btn {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
-  padding: 12px 28px;
+  padding: 12px 30px;
   background-color: #566500;
   color: white;
   border: none;
@@ -882,7 +885,7 @@ section.last {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    padding: 20px 12px 0;
+    padding: 18px 12px 0;
     margin-bottom: 16px;
   }
 
@@ -912,7 +915,7 @@ section.last {
   }
 
   .storyHeader__content h1 {
-    padding-top: 12px;
+    padding-top: 10px;
     font-size: 28px;
     line-height: 1.15;
   }
@@ -973,12 +976,58 @@ section.last {
 }
 
 @media (max-width: 600px) {
+  p,
+  section {
+    max-width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  section {
+    padding: 0;
+  }
+
+  .top-nav__brand-text {
+    display: none;
+  }
+
+  .top-nav {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    justify-items: start;
+  }
+
+  .top-nav__section {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .top-nav__section--right {
+    justify-content: flex-start;
+  }
+
   .button-pair-container {
     flex-direction: column;
+    width: 100%;
+    max-width: calc(100% - 24px);
   }
 
   .button-pair-btn {
     flex: none;
+    width: 100%;
+  }
+
+  .back-button-wrap {
+    max-width: calc(100% - 24px);
+    padding: 0;
+  }
+
+  .back-btn {
     width: 100%;
   }
 
