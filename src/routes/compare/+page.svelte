@@ -15,9 +15,9 @@
   <title>Compare Neighborhoods and Zip Codes - Tree Complaints</title>
 </svelte:head>
 
-<ButtonPair buttons={backButtons} className="back-button-wrap" />
-
 <div class="zip-comparison-tool">
+  <ButtonPair buttons={backButtons} className="back-button-wrap" />
+
   <h1>Compare Complaints by Neighborhood or Zip Code</h1>
   <p>
     Search by a 5-digit zip code or neighborhood name to see total tree complaints,
@@ -111,11 +111,11 @@
 </div>
 
 <style lang="scss">
-  .back-button-wrap {
-    margin-top: 30px;
-  }
-
   .results-section {
     display: block;
+  }
+
+  .zip-comparison-tool {
+    margin-top: 24px;
   }
 </style>

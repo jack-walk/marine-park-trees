@@ -47,7 +47,7 @@ This is your page!
 	</div>
 
 	<div class="storyHeader__content">
-		<Headline {headline} />
+		<Headline text={headline} />
 		<h2>{subheadline}</h2>
 		<h3>{@html byline}</h3>
 	</div>

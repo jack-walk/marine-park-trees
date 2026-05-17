@@ -5,11 +5,12 @@ Headline.svelte — Large Montserrat headline used in the story header.
 <script>
   let {
     text = '',
+    headline = '',
   } = $props();
 </script>
 
-{#if text}
-  <h1 class="headline">{@html text}</h1>
+{#if text || headline}
+  <h1 class="headline">{@html text || headline}</h1>
 {/if}
 
 <style lang="scss">

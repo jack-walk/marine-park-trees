@@ -15,9 +15,9 @@
   <title>Data Analysis</title>
 </svelte:head>
 
-<ButtonPair buttons={backButtons} className="back-button-wrap" />
-
 <div class="data-container">
+  <ButtonPair buttons={backButtons} className="back-button-wrap" />
+
   <div class="data-section">
     <h2>Why Marine Park?</h2>
     <p>
@@ -147,14 +147,10 @@
 </div>
 
 <style lang="scss">
-  .back-button-wrap {
-    margin-top: 30px;
-  }
-
   .data-container {
     max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 24px auto 40px;
+    padding: 0 20px;
   }
 
   .data-section {
