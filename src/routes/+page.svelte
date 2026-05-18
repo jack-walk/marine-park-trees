@@ -8,7 +8,7 @@ This is your page!
 	import ButtonPair from '$lib/components/Layout/ButtonPair.svelte';
 
 	const headline =
-		'Marine Park residents have complained about <span style="color:#302a03;">tree maintenance</span> for years. Are parks officials listening?';
+		'Marine Park residents have worried about <span style="color:#302a03;">aging trees</span> for years. Are parks officials listening?';
 
 	const subheadline =
 		'A new data investigation reveals that the neighborhood ranks first in tree service requests. Residents worry that city officials are overlooking risks to safety and property.';
