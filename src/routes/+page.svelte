@@ -31,7 +31,7 @@ This is your page!
 
 <!-- This sets the page title in the browser tab -->
 <svelte:head>
-	<title>Marine Park residents have complained about tree maintenance for years. Are parks officials listening?</title>
+	<title>Marine Park residents have worried about aging trees for years. Are parks officials listening?</title>
   <meta
     name="description"
 		content="A new data investigation reveals that Marine Park ranks first in tree service requests. Residents worry that city officials are overlooking risks to safety and property."
@@ -55,6 +55,11 @@ This is your page!
 	</header>
 
 <section>
+	<br>
+		<hr class="section-divider" />
+		<hr class="section-divider" />
+	<br>
+
 	<p>
 		Connie Donohue says trees are taking over her block. She’s spent four decades in the same home, located in a quiet south Brooklyn neighborhood called Marine Park. For about as long, she recalls roots unearthing sidewalk tiles and creeping into sewers; branches sprawling downward and blocking street signs.
 	</p>
@@ -205,7 +210,7 @@ This is your page!
 				src={`${base}/photos/building.JPG`}
 				alt="Pedestrians walk outside a community center. So does a dog on a leash."
 			/>
-			<figcaption class="bannerCaption">Marine Park's Carmine Carro Community Center. (Photo: Jack Walker)</figcaption>
+			<figcaption class="bannerCaption">Carmine Carro Community Center in the Marine Park neighborhood. (Photo: Jack Walker)</figcaption>
 		</figure>
 	</header>
 </section>
@@ -238,3 +243,9 @@ This is your page!
 
 <ButtonPair buttons={buttonPair} />
 </div>
+
+<style lang="scss">
+	.homepage-container {
+		padding-bottom: 50px;
+	}
+</style>

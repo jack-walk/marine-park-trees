@@ -116,6 +116,10 @@
     than any other neighborhood in New York City. See how many tree complaints your neighborhood has filed with the city's 311 service line since 2020.
   </p>
 
+		<hr class="section-divider" />
+		<hr class="section-divider" />
+    <br>
+
   <div class="search-section">
     <label for="zip-code-input">Enter your zip code or neighborhood.</label>
     <div class="search-input-wrap">

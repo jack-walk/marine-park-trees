@@ -21,6 +21,13 @@ describe('SiteHeader', () => {
     expect(screen.getByAltText('Bunnies')).toBeTruthy();
   });
 
+  it('links the brand text instead of the bunny image', () => {
+    render(SiteHeader);
+
+    expect(screen.getByText('[JACK-WALK]').closest('a')).toBeTruthy();
+    expect(screen.getByAltText('Bunnies').closest('a')).toBeNull();
+  });
+
   it('renders custom navigation links', () => {
     render(SiteHeader, {
       props: {

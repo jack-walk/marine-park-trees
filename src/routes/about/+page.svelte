@@ -26,6 +26,8 @@
 <div class="data-container">
   <ButtonPair buttons={backButtons} className="back-button-wrap" />
 
+  <h1>About the data</h1>
+
   <div class="data-section">
 
     <h2>Repeat offenders</h2>
@@ -35,6 +37,7 @@
       concern from residents, and their addresses.
     </p>
         <center><hr class="section-divider" />
+          		<hr class="section-divider" />
     <h3 class="map-title"><b>Trees in the Marine Park zip code with 5+ complaints since 2023:</b></h3>
     <ComplaintsAddressMap incidents={data.dataset.marineParkIncidents} /></center>
 
@@ -118,6 +121,14 @@
   .data-section h2 {
     color: #566500;
     margin-top: 0;
+  }
+
+  .data-container h1 {
+    color: #566500;
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-family: 'Montserrat';
+    text-align: center;
   }
 
   :global(.back-button-wrap) {

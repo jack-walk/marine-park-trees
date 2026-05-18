@@ -18,7 +18,7 @@ SiteHeader.svelte — Top navigation used across the site.
   <div class="masthead-wrapper">
     <nav class="top-nav" aria-label="Site navigation">
       <div class="top-nav__section top-nav__section--left">
-        <a href="http://jackwalker.xyz" class="top-nav__bunny-link">
+        <div class="top-nav__bunny-wrap" aria-hidden="true">
           <img
             class="top-nav__bunny-image top-nav__bunny-image--desktop"
             src={`${base}/photos/bunnies.png`}
@@ -30,11 +30,13 @@ SiteHeader.svelte — Top navigation used across the site.
             alt=""
             aria-hidden="true"
           />
-        </a>
+        </div>
       </div>
 
       <div class="top-nav__section top-nav__section--center" aria-label="Site brand">
-        <span class="top-nav__brand-text">{brandLabel}</span>
+        <a href={websiteHref} class="top-nav__brand-link" aria-label={brandLabel}>
+          <span class="top-nav__brand-text">{brandLabel}</span>
+        </a>
       </div>
 
       <div class="top-nav__section top-nav__section--right">
@@ -96,7 +98,8 @@ SiteHeader.svelte — Top navigation used across the site.
     flex-wrap: wrap;
   }
 
-  .top-nav__link {
+  .top-nav__link,
+  .top-nav__brand-link {
     color: #000;
     text-decoration: none;
     font-family: inherit;
@@ -106,17 +109,30 @@ SiteHeader.svelte — Top navigation used across the site.
     align-items: center;
   }
 
-  .top-nav__link:hover {
+  .top-nav__link:hover,
+  .top-nav__brand-link:hover {
     text-decoration: underline;
   }
 
-  .top-nav__bunny-link {
+  .top-nav__brand-link:hover,
+  .top-nav__brand-link:focus,
+  .top-nav__brand-link:visited,
+  .top-nav__brand-link:active {
+    color: rgba(0, 0, 0, 0.72);
+    background: transparent;
+  }
+
+  .top-nav__brand-link:hover {
+    text-decoration: none;
+  }
+
+  .top-nav__bunny-wrap {
     display: flex;
     align-items: center;
     background: none;
     border: none;
     padding: 0;
-    cursor: pointer;
+    cursor: default;
   }
 
   .top-nav__brand-text {
