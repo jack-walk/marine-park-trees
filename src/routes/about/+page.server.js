@@ -13,7 +13,10 @@ export async function load() {
   ]);
 
   return {
-    dataset,
+    dataset: {
+      ...dataset,
+      marineParkIncidents,
+    },
     aboutData: buildAboutData(dataset, marineParkIncidents),
   };
 }

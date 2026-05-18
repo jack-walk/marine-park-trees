@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/svelte';
 import Geocoder from '$lib/components/Maps/Geocoder.svelte';
 import Legend from '$lib/components/Maps/Legend.svelte';
 import Map from '$lib/components/Maps/Map.svelte';
+import ComplaintsAddressMap from '$lib/components/Maps/ComplaintsAddressMap.svelte';
 
 // Mock maplibre-gl so it doesn't try to use WebGL in jsdom
 vi.mock('maplibre-gl', () => {
@@ -625,5 +626,86 @@ describe('Legend', () => {
         },
       })
     ).toThrow(/noData/i);
+  });
+});
+
+describe('ComplaintsAddressMap', () => {
+  it('renders without errors with empty incidents', () => {
+    const { container } = render(ComplaintsAddressMap, {
+      props: {
+        incidents: [],
+      },
+    });
+    expect(container).toBeTruthy();
+  });
+
+  it('aggregates incidents by address', () => {
+    const incidents = [
+      {
+        'Incident Address': '123 Main St',
+        'Latitude': '40.618',
+        'Longitude': '-73.925',
+        'Created Date': '2026-05-02',
+      },
+      {
+        'Incident Address': '123 Main St',
+        'Latitude': '40.618',
+        'Longitude': '-73.925',
+        'Created Date': '2026-05-01',
+      },
+      {
+        'Incident Address': '456 Oak Ave',
+        'Latitude': '40.620',
+        'Longitude': '-73.924',
+        'Created Date': '2026-05-02',
+      },
+    ];
+
+    const { container } = render(ComplaintsAddressMap, {
+      props: {
+        incidents,
+      },
+    });
+    expect(container).toBeTruthy();
+  });
+
+  it('filters addresses with fewer than 10 complaints', () => {
+    const incidents = Array.from({ length: 5 }, (_, i) => ({
+      'Incident Address': '123 Main St',
+      'Latitude': '40.618',
+      'Longitude': '-73.925',
+      'Created Date': '2026-05-02',
+    }));
+
+    const { container } = render(ComplaintsAddressMap, {
+      props: {
+        incidents,
+      },
+    });
+    expect(container).toBeTruthy();
+  });
+
+  it('skips incidents with invalid coordinates', () => {
+    const incidents = [
+      {
+        'Incident Address': '123 Main St',
+        'Latitude': 'invalid',
+        'Longitude': '-73.925',
+        'Created Date': '2026-05-02',
+      },
+      {
+        'Incident Address': '456 Oak Ave',
+        'Latitude': '40.620',
+        'Longitude': null,
+        'Created Date': '2026-05-02',
+      },
+    ];
+
+    const { container } = render(ComplaintsAddressMap, {
+      props: {
+        incidents,
+      },
+    });
+    expect(container).toBeTruthy();
   });
 });

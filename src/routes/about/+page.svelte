@@ -1,6 +1,7 @@
 <script>
   import { base } from '$app/paths';
   import ButtonPair from '$lib/components/Layout/ButtonPair.svelte';
+  import ComplaintsAddressMap from '$lib/components/Maps/ComplaintsAddressMap.svelte';
   import {
     formatComplaintPercentage,
     formatComplaintValue,
@@ -26,101 +27,111 @@
   <ButtonPair buttons={backButtons} className="back-button-wrap" />
 
   <div class="data-section">
+
+    <h2>Repeat offenders</h2>
+    <p>
+      Since January 2023, 41 addresses in zip code 11234 have had 5 or more complaints over
+      tree maintenance issues. Here is a map of some of the trees that have raised the most
+      concern from residents.
+    </p>
+    <h3 class="map-title"><b>Addresses with 5+ complaints since 2023:</b></h3>
+    <ComplaintsAddressMap incidents={data.dataset.marineParkIncidents} />
+
+  </div>
+
+  <div class="data-section">
     <h2>Why Marine Park?</h2>
     <p>
-      The zip code centered on Marine Park, 11234, records <strong>{formatComplaintValue(data.aboutData.marineParkRow.totalComplaints)}</strong> tree complaints in complaintsAll.csv, placing it <strong>#{data.aboutData.marineParkRow.rank}</strong> citywide among {data.dataset.rankedRows.length} zip code rows.
+      Zip code 11234 encompasses the neighborhood of Marine Park, but also all or some of
+      the neighborhoods of Mill Basin, Old Mill Basin, Flatlands and Bergen Beach, according
+      to the New York Times <a href="https://www.nytimes.com/interactive/2023/upshot/extremely-detailed-nyc-neighborhood-map.html">
+      neighborhood map</a>.
     </p>
-    <p>
-      That total is dominated by power-line complaints: the zip recorded <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Power Line'])}</strong> reports in that category, while {formatComplaintTypeLabel('Hitting Building')} was recorded as <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Building'])}</strong>.
+      <p>For this story, I focused on Marine Park because of recent reporting on tree maintenance issues
+       there, and used the neighborhood as a stand-in for the wider zip code for ease of
+       understanding for general readers. Most issues touched on in this story hold true for
+       surrounding areas as well.
     </p>
-  </div>
+    </div>
 
   <div class="data-section">
-    <h2>Key Findings</h2>
-
-    <div class="stat">
-      <div class="stat-label">Marine Park Zip Code 11234</div>
-      <div>{formatComplaintValue(data.aboutData.marineParkRow.totalComplaints)} complaints</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Citywide rank</div>
-      <div>#{data.aboutData.marineParkRow.rank} of {data.dataset.rankedRows.length}</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-label">Share of all complaints</div>
-      <div>{formatComplaintPercentage(data.aboutData.marineParkShare)}</div>
-    </div>
-
-    <p style="margin-top: 20px;">
-      Across the full dataset, <strong>{formatComplaintTypeLabel(data.aboutData.topComplaintType)}</strong> is the most common complaint type.
-    </p>
-  </div>
-
-  <div class="data-section">
-    <h2>Complaints by Category</h2>
+    <h2>Tktk</h2>
     <table>
       <thead>
         <tr>
-          <th>Complaint Type</th>
-          <th>Count</th>
-          <th>Percentage</th>
+          <th>Tktk</th>
+          <th>Tktk</th>
+          <th>Tktk</th>
         </tr>
       </thead>
       <tbody>
-        {#each data.dataset.complaintTypes as complaintType}
-          <tr>
-            <td>{formatComplaintTypeLabel(complaintType)}</td>
-            <td>{formatComplaintValue(data.aboutData.overallComplaintTotals[complaintType])}</td>
-            <td>{formatComplaintPercentage(data.aboutData.overallComplaintPercentages[complaintType])}</td>
-          </tr>
-        {/each}
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <div class="data-section">
-    <h2>Neighborhoods with Highest Complaints</h2>
+    <h2>Tktk</h2>
     <table>
       <thead>
         <tr>
-          <th>Zip Code</th>
-          <th>Neighborhood</th>
-          <th>Borough</th>
-          <th>Total Complaints</th>
+          <th>Tktk</th>
+          <th>Tktk</th>
+          <th>Tktk</th>
+          <th>Tktk</th>
         </tr>
       </thead>
       <tbody>
-        {#each data.aboutData.topRows as row}
-          <tr>
-            <td>{row.zipCode}</td>
-            <td>{row.neighborhood}</td>
-            <td>{row.borough}</td>
-            <td>{formatComplaintValue(row.totalComplaints)}</td>
-          </tr>
-        {/each}
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
+        <tr>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+          <td>Tktk</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
   <div class="data-section">
-    <h2>Methodology</h2>
+    <h2>Tktk</h2>
     <p>
-      complaintsAll.csv contains one row per zip code and neighborhood label. The compare page searches that file directly, matches a 5-digit zip code exactly, and matches neighborhood names by normalized text so the returned counts are based on the rows that actually match the query.
-    </p>
-    <p>
-      Missing values labeled Data Not Available are excluded from the totals and percentages shown on this page. The incident-level complaintsMarinePark.csv file is also loaded for narrative context and contains {formatComplaintValue(data.aboutData.marineParkIncidentCount)} records.
+      Tktk
     </p>
   </div>
 
   <div class="data-section">
-    <h2>Data Quality Notes</h2>
+    <h2>Tktk</h2>
     <ul>
-      <li>Totals are calculated from the numeric values in complaintsAll.csv; rows with missing totals are not ranked.</li>
-      <li>Category percentages are computed against the full summed complaint total of {formatComplaintValue(data.dataset.totalComplaints)} complaints.</li>
-      <li>Marine Park’s 11234 row is the exact source for the story’s neighborhood-specific figures.</li>
-      <li>Search results are exact for zip codes and text-normalized for neighborhood names, so no complaint counts are guessed or modeled.</li>
+      <li>Tktk</li>
+      <li>Tktk</li>
+      <li>Tktk</li>
+      <li>Tktk</li>
     </ul>
   </div>
 </div>
@@ -144,6 +155,13 @@
     margin-top: 0;
   }
 
+  :global(.back-button-wrap) {
+    width: 100%;
+    max-width: none;
+    margin: 0 0 18px;
+    padding: 0;
+  }
+
   .stat {
     font-size: 24px;
     font-weight: bold;
@@ -154,6 +172,15 @@
   .stat-label {
     font-size: 14px;
     color: #666;
+  }
+
+  .map-title {
+    margin: 18px 0 12px;
+    text-align: left;
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    line-height: var(--leading-heading);
+    font-weight: var(--font-weight-bold);
   }
 
   table {

@@ -45,7 +45,7 @@ USAGE EXAMPLE:
     height = null, // Optional explicit height in pixels
     aspectRatio = '4 / 3', // Aspect ratio when no explicit height is given
     caption = '', // Optional caption below the map
-    credit = 'OpenFreeMap / OpenStreetMap contributors',
+    credit = '(OpenFreeMap / OpenStreetMap contributors)',
     children, // Snippet for nested MapLayer components
   } = $props();
 
@@ -202,6 +202,8 @@ USAGE EXAMPLE:
     gap: var(--spacing-xs);
     padding-top: var(--spacing-xxs);
     margin-top: var(--spacing-xxs);
+    align-items: flex-end;
+    text-align: right;
   }
 
   .caption {
@@ -211,7 +213,8 @@ USAGE EXAMPLE:
   }
 
   .credit {
-    font-size: var(--font-size-xs);
+    font-size: 12px;
+    line-height: 1.4;
     color: var(--color-medium-gray);
   }
 </style>
