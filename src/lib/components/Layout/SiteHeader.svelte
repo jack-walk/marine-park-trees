@@ -7,40 +7,57 @@ SiteHeader.svelte — Top navigation used across the site.
 
   let {
     brandLabel = '[JACK-WALK]',
-    websiteLabel = 'Website',
-    websiteHref = 'https://jackwalker.xyz',
+    linkedinLabel = 'LinkedIn',
+    linkedinHref = 'https://www.linkedin.com/in/jacktmwalker/',
     githubLabel = 'Github',
     githubHref = 'https://github.com/jack-walk',
   } = $props();
+  let hopped = $state(false);
 </script>
 
 <header class="site-header">
   <div class="masthead-wrapper">
     <nav class="top-nav" aria-label="Site navigation">
       <div class="top-nav__section top-nav__section--left">
-        <div class="top-nav__bunny-wrap" aria-hidden="true">
-          <img
-            class="top-nav__bunny-image top-nav__bunny-image--desktop"
-            src={`${base}/photos/bunnies.png`}
-            alt="Bunnies"
-          />
-          <img
-            class="top-nav__bunny-image top-nav__bunny-image--mobile"
-            src={`${base}/photos/bunnies.png`}
-            alt=""
-            aria-hidden="true"
-          />
+        <div
+          class="top-nav__bunny-wrap"
+          role="button"
+          tabindex="0"
+          aria-label="Bunnies"
+          onclick={() => (hopped = true)}
+          onkeydown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              hopped = true;
+            }
+          }}
+        >
+          {#if !hopped}
+            <img
+              class="top-nav__bunny-image top-nav__bunny-image--desktop"
+              src={`${base}/photos/bunnies.png`}
+              alt="Bunnies"
+            />
+            <img
+              class="top-nav__bunny-image top-nav__bunny-image--mobile"
+              src={`${base}/photos/bunnies.png`}
+              alt=""
+              aria-hidden="true"
+            />
+          {:else}
+            <span class="top-nav__bunny-message">We hopped away...</span>
+          {/if}
         </div>
       </div>
 
       <div class="top-nav__section top-nav__section--center" aria-label="Site brand">
-        <a href={websiteHref} class="top-nav__brand-link" aria-label={brandLabel}>
+        <a href={linkedinHref} class="top-nav__brand-link" aria-label={brandLabel}>
           <span class="top-nav__brand-text">{brandLabel}</span>
         </a>
       </div>
 
       <div class="top-nav__section top-nav__section--right">
-        <a href={websiteHref} class="top-nav__link">{websiteLabel}</a>
+        <a href={linkedinHref} class="top-nav__link">{linkedinLabel}</a>
         <a href={githubHref} class="top-nav__link">{githubLabel}</a>
       </div>
     </nav>
@@ -56,7 +73,7 @@ SiteHeader.svelte — Top navigation used across the site.
   }
 
   .masthead-wrapper {
-    background: #fff;
+    background: linear-gradient(180deg,#d9d9d9,#e9e9e9);
   }
 
   .top-nav {
@@ -67,13 +84,15 @@ SiteHeader.svelte — Top navigation used across the site.
     padding: 8px 20px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
-    background: #fff;
+    background: transparent;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     line-height: 1.2;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-sizing: border-box;
+    height: 44px; /* fixes vertical size to match bunny image + vertical padding */
   }
 
   .top-nav__section {
@@ -132,7 +151,15 @@ SiteHeader.svelte — Top navigation used across the site.
     background: none;
     border: none;
     padding: 0;
-    cursor: default;
+    cursor: pointer;
+  }
+
+  .top-nav__bunny-message {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 6px;
+    display: inline-block;
   }
 
   .top-nav__brand-text {
@@ -140,7 +167,7 @@ SiteHeader.svelte — Top navigation used across the site.
     font-weight: 700;
     color: rgba(0, 0, 0, 0.72);
     white-space: nowrap;
-    cursor: default;
+    cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     display: inline-block;
   }
@@ -169,6 +196,7 @@ SiteHeader.svelte — Top navigation used across the site.
       font-size: 12px;
       gap: 10px;
       grid-template-columns: 1fr auto 1fr;
+      height: 42px; /* mobile bunny (26px) + vertical padding (8+8) */
     }
 
     .top-nav__brand-text {

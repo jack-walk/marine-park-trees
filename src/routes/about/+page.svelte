@@ -24,9 +24,12 @@
 </svelte:head>
 
 <div class="data-container">
-  <ButtonPair buttons={backButtons} className="back-button-wrap" />
+  <ButtonPair buttons={backButtons} className="back-button-wrap" /><br>
 
   <h1>About the data</h1>
+  <p>This project was completed as part of Jack Walker's data journalism coursework at CUNY's 
+    Craig Newmark School of Journalism. Here are more details about the data 
+  decisions that powered this investigation.</p><br>
 
   <div class="data-section">
 
