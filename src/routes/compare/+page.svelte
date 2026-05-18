@@ -93,14 +93,13 @@
 <div class="zip-comparison-tool">
   <ButtonPair buttons={backButtons} className="back-button-wrap" />
 
-  <h1>Compare Complaints by Neighborhood or Zip Code</h1>
+  <h1>View tree complaints in your zip code</h1>
   <p>
-    Search by a 5-digit zip code or neighborhood name to see total tree complaints,
-    complaint breakdowns, and how the area ranks citywide.
+    See how many 311 complaints over tree maintenance issues have been filed where you live since 2020.
   </p>
 
   <form class="search-section" onsubmit={handleSubmit}>
-    <label for="zip-code-input">Enter Your Zip Code Or Neighborhood:</label>
+    <label for="zip-code-input">Enter your zip code Or neighborhood.</label>
     <div class="search-input-wrap">
       <input
         type="text"

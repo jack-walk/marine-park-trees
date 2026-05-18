@@ -126,7 +126,7 @@ header.storyHeader {
   column-gap: 40px;
   max-width: 1040px;
   margin: 0 auto 24px;
-  padding: 40px 20px 0;
+  padding: 48px 20px 0;
   text-align: left;
 }
 
@@ -1037,6 +1037,8 @@ section.last {
   .button-pair-btn {
     flex: none;
     width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 
   .back-button-wrap {

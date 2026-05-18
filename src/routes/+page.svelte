@@ -204,7 +204,7 @@ This is your page!
 				src={`${base}/photos/building.JPG`}
 				alt="Pedestrians walk outside a community center. So does a dog on a leash."
 			/>
-			<figcaption class="bannerCaption">The Carmine Carro Community Center in Marine Park. (Photo: Jack Walker)</figcaption>
+			<figcaption class="bannerCaption">Marine Park's Carmine Carro Community Center. (Photo: Jack Walker)</figcaption>
 		</figure>
 	</header>
 </section>
