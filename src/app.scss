@@ -410,6 +410,7 @@ section.last {
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
 }
 
 .search-section {
@@ -419,7 +420,7 @@ section.last {
   border-left: 4px solid #566500;
   margin-bottom: 30px;
   text-align: center;
-  max-width: 600px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -610,8 +611,8 @@ section.last {
 }
 
 .result-tag {
-  background-color: #eaf0e5;
-  color: #566500;
+  background-color: #e8f3fb;
+  color: #478bb8;
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 13px;
@@ -759,7 +760,7 @@ section.last {
 .zip-result-card {
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  border-left: 3px solid #566500;
+  border-left: 2px solid #566500;
   border-radius: 8px;
   padding: 18px;
   margin-bottom: 18px;
@@ -830,6 +831,18 @@ section.last {
   line-height: 1.15;
   text-transform: none;
   letter-spacing: normal;
+}
+
+.zip-result-citation {
+  margin: 14px 0 0;
+  color: #666;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.zip-result-citation a {
+  color: inherit;
 }
 
 .zip-result-sections {

@@ -184,6 +184,10 @@
               {/each}
             </div>
           </div>
+
+          <p class="zip-result-citation">
+            Figures from New York City&rsquo;s database of <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9/about_data" target="_blank" rel="noreferrer">311 service requests</a>. Complaints were filed between Jan. 1, 2023 and May 4, 2026.
+          </p>
         </section>
 
         {#if searchResult.groups.length > 1}
@@ -269,6 +273,10 @@
                     {/each}
                   </div>
                 {/if}
+
+                <p class="zip-result-citation">
+                  Figures from New York City&rsquo;s database of <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9/about_data" target="_blank" rel="noreferrer">311 service requests</a> filed between Jan. 1, 2023 and May 4, 2026.
+                </p>
               </section>
             {/each}
           </div>
