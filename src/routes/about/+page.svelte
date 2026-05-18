@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-  <title>Data Analysis</title>
+  <title>About the data</title>
 </svelte:head>
 
 <div class="data-container">
@@ -50,6 +50,18 @@
     </p>
   </div>
 
+<section>
+	<header>
+		<figure class="banner">
+			<img
+				src={`${base}/photos/wires2.JPG`}
+				alt="Wires cut through a large tree."
+			/>
+			<figcaption class="bannerCaption">Power lines run through a tree. (Photo: Jack Walker)</figcaption>
+		</figure>
+	</header>
+</section>
+
   <div class="data-section">
     <h2>What if it's one person calling again and again?</h2>
     <p>
@@ -73,6 +85,18 @@
        surrounding areas as well.
     </p>
     </div>
+
+<section>
+	<header>
+		<figure class="banner">
+			<img
+				src={`${base}/photos/sidewalk.JPG`}
+				alt="Tree roots unearth a sidewalk tile."
+			/>
+			<figcaption class="bannerCaption">Roots unearth a sidewalk in Marine Park. (Photo: Jack Walker)</figcaption>
+		</figure>
+	</header>
+</section>
 
 </div>
 

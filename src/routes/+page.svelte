@@ -38,20 +38,21 @@ This is your page!
   />
 </svelte:head>
 
-<header class="storyHeader">
-	<div class="storyHeader__media">
-		<img
-			src={`${base}/photos/wires3.JPG`}
-			alt="Utility wires pass through the branches of a tree. Some appear to be caught in the branches."
-		/>
-	</div>
+<div class="homepage-container">
+	<header class="storyHeader">
+		<div class="storyHeader__media">
+			<img
+				src={`${base}/photos/wires3.JPG`}
+				alt="Utility wires pass through the branches of a tree. Some appear to be caught in the branches."
+			/>
+		</div>
 
-	<div class="storyHeader__content">
-		<Headline text={headline} />
-		<h2>{subheadline}</h2>
-		<h3>{@html byline}</h3>
-	</div>
-</header>
+		<div class="storyHeader__content">
+			<Headline text={headline} />
+			<h2>{subheadline}</h2>
+			<h3>{@html byline}</h3>
+		</div>
+	</header>
 
 <section>
 	<p>
@@ -236,3 +237,4 @@ This is your page!
 </section>
 
 <ButtonPair buttons={buttonPair} />
+</div>
