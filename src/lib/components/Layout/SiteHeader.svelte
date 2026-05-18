@@ -24,11 +24,12 @@ SiteHeader.svelte — Top navigation used across the site.
           role="button"
           tabindex="0"
           aria-label="Bunnies"
-          onclick={() => (hopped = true)}
+          aria-pressed={hopped}
+          onclick={() => (hopped = !hopped)}
           onkeydown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              hopped = true;
+              hopped = !hopped;
             }
           }}
         >
@@ -130,19 +131,15 @@ SiteHeader.svelte — Top navigation used across the site.
 
   .top-nav__link:hover,
   .top-nav__brand-link:hover {
+    color: #478bb8;
     text-decoration: underline;
   }
 
-  .top-nav__brand-link:hover,
   .top-nav__brand-link:focus,
   .top-nav__brand-link:visited,
   .top-nav__brand-link:active {
     color: rgba(0, 0, 0, 0.72);
     background: transparent;
-  }
-
-  .top-nav__brand-link:hover {
-    text-decoration: none;
   }
 
   .top-nav__bunny-wrap {
