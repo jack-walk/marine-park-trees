@@ -27,7 +27,8 @@ SiteHeader.svelte — Top navigation used across the site.
           <img
             class="top-nav__bunny-image top-nav__bunny-image--mobile"
             src={`${base}/photos/bunnies.png`}
-            alt="Bunnies"
+            alt=""
+            aria-hidden="true"
           />
         </a>
         <span class="top-nav__brand-text top-nav__brand-text--mobile">{brandLabel}</span>
