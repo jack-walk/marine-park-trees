@@ -86,6 +86,20 @@
   function availableComplaintTypes(row) {
     return COMPLAINT_TYPES.filter((type) => Number.isFinite(row.complaintCounts[type]));
   }
+
+  function summaryAreaLabel(result) {
+    const group = result?.groups?.[0];
+
+    if (!group) {
+      return result?.summaryLabel ?? '';
+    }
+
+    if (group.rows.length === 1 && group.subtitle.includes('•')) {
+      return group.subtitle.split('•')[0].trim();
+    }
+
+    return group.label;
+  }
 </script>
 
 <svelte:head>
@@ -139,8 +153,8 @@
         <section class="zip-result-card zip-result-card--summary">
           <div class="zip-result-summary">
             <div>
-              <div class="zip-result-kicker">Your Zip Code</div>
-              <h2 class="zip-result-title">{searchResult.summaryLabel}</h2>
+              <div class="zip-result-kicker">Your Area</div>
+              <h2 class="zip-result-title">{summaryAreaLabel(searchResult)}</h2>
             </div>
 
             <div class="zip-result-meta">
