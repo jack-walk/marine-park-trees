@@ -18,16 +18,18 @@ SiteHeader.svelte — Top navigation used across the site.
   <div class="masthead-wrapper">
     <nav class="top-nav" aria-label="Site navigation">
       <div class="top-nav__section top-nav__section--left">
-        <img
-          class="top-nav__bunny-image top-nav__bunny-image--desktop"
-          src={`${base}/photos/bunnies.png`}
-          alt="Bunnies"
-        />
-        <img
-          class="top-nav__bunny-image top-nav__bunny-image--mobile"
-          src={`${base}/photos/bunnies.png`}
-          alt="Bunnies"
-        />
+        <a href="http://jackwalker.xyz" class="top-nav__bunny-link">
+          <img
+            class="top-nav__bunny-image top-nav__bunny-image--desktop"
+            src={`${base}/photos/bunnies.png`}
+            alt="Bunnies"
+          />
+          <img
+            class="top-nav__bunny-image top-nav__bunny-image--mobile"
+            src={`${base}/photos/bunnies.png`}
+            alt="Bunnies"
+          />
+        </a>
         <span class="top-nav__brand-text top-nav__brand-text--mobile">{brandLabel}</span>
       </div>
 
@@ -43,7 +45,7 @@ SiteHeader.svelte — Top navigation used across the site.
   @use '../../styles' as *;
 
   .site-header {
-    border-bottom: 1px solid #000;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 4px var(--color-shadow);
   }
 
@@ -56,8 +58,9 @@ SiteHeader.svelte — Top navigation used across the site.
     grid-template-columns: 1fr auto;
     align-items: center;
     column-gap: 16px;
-    padding: 4px 20px 9px;
-    border-bottom: 1px solid #000;
+    padding: 8px 20px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.2);
     background: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
@@ -89,10 +92,22 @@ SiteHeader.svelte — Top navigation used across the site.
     text-decoration: none;
     font-family: inherit;
     white-space: nowrap;
+    align-self: center;
+    display: flex;
+    align-items: center;
   }
 
   .top-nav__link:hover {
     text-decoration: underline;
+  }
+
+  .top-nav__bunny-link {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
   .top-nav__brand-text {
@@ -111,7 +126,7 @@ SiteHeader.svelte — Top navigation used across the site.
   .top-nav__bunny-image {
     display: inline-block;
     align-self: center;
-    height: 32px;
+    height: 28px;
     width: auto;
     padding: 0;
     border: 0;

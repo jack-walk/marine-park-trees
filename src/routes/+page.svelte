@@ -125,10 +125,10 @@ This is your page!
 	<header>
 		<figure class="banner">
 			<img
-				src={`${base}/photos/sidewalk.JPG`}
+				src={`${base}/photos/street.JPG`}
 				alt="Trees line a suburban street."
 			/>
-			<figcaption class="bannerCaption">A tree-lined street of the Marine Park neighborhood. (Photo: Jack Walker)</figcaption>
+			<figcaption class="bannerCaption">A tree-lined street in Marine Park. (Photo: Jack Walker)</figcaption>
 		</figure>
 	</header>
 </section>

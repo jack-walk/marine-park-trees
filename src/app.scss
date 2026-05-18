@@ -131,14 +131,14 @@ header.storyHeader {
 }
 
 .storyHeader__media {
-  width: 400px;
+  width: 450px;
 }
 
 .storyHeader__media img {
   display: block;
   width: 100%;
   height: auto;
-  max-width: 410px;
+  max-width: 460px;
 }
 
 .storyHeader__content {
@@ -981,7 +981,7 @@ section.last {
   p.chartWrapper {
     max-width: calc(100% - 24px);
     margin: 40px auto;
-    padding: 0 12px;
+    padding: 12px 12px;
     box-sizing: border-box;
   }
 

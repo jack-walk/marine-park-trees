@@ -23,7 +23,7 @@ Headline.svelte — Large Montserrat headline used in the story header.
     color: #566500;
     font-weight: bold;
     font-family: 'Montserrat';
-    font-size: 40px;
+    font-size: 45px;
     line-height: 1;
   }
 
