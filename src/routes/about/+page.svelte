@@ -40,100 +40,40 @@
   </div>
 
   <div class="data-section">
+    <h2>Calculating zip code data</h2>
+    <p>
+      This project uses <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9/about_data" target="_blank" rel="noreferrer">
+        311 service request data</a> to calculate the number of tree maintenance complaints filed in each zip code. The full 
+        dataset was filtered to include complaints over tree maintenance filed since 2023, and then was further filtered to
+         determine subtypes of each complaint for each zip code. These calculations were used to inform the data visualizations on <a href="/">the main page</a>,
+          and the search tool on the <a href="/compare">compare page</a>.
+    </p>
+  </div>
+
+  <div class="data-section">
+    <h2>What if it's one person calling again and again?</h2>
+    <p>
+      To ensure outliers who frequently called 311 did not skew the dataset, results were filtered by individual address. Few 
+      addresses were reported more than 20 times, which indicates a variety of complaints across the board, and fewer instances
+      of a single tree garnering an outsized number of complaints, skewing the dataset.
+    </p>
+  </div>
+
+  <div class="data-section">
     <h2>Why Marine Park?</h2>
     <p>
       Zip code 11234 encompasses the neighborhood of Marine Park, but also all or some of
       the neighborhoods of Mill Basin, Old Mill Basin, Flatlands and Bergen Beach, according
-      to the New York Times <a href="https://www.nytimes.com/interactive/2023/upshot/extremely-detailed-nyc-neighborhood-map.html">
-      neighborhood map</a>.
+      to a <a href="https://www.nytimes.com/interactive/2023/upshot/extremely-detailed-nyc-neighborhood-map.html">
+         neighborhood map</a> by <i>The New York Times</i>.
     </p>
       <p>For this story, I focused on Marine Park because of recent reporting on tree maintenance issues
-       there, and used the neighborhood as a stand-in for the wider zip code for ease of
+       there. I used the neighborhood as a stand-in for the wider zip code for ease of
        understanding for general readers. Most issues touched on in this story hold true for
        surrounding areas as well.
     </p>
     </div>
 
-  <div class="data-section">
-    <h2>Tktk</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Tktk</th>
-          <th>Tktk</th>
-          <th>Tktk</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="data-section">
-    <h2>Tktk</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Tktk</th>
-          <th>Tktk</th>
-          <th>Tktk</th>
-          <th>Tktk</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-        <tr>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-          <td>Tktk</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="data-section">
-    <h2>Tktk</h2>
-    <p>
-      Tktk
-    </p>
-  </div>
-
-  <div class="data-section">
-    <h2>Tktk</h2>
-    <ul>
-      <li>Tktk</li>
-      <li>Tktk</li>
-      <li>Tktk</li>
-      <li>Tktk</li>
-    </ul>
-  </div>
 </div>
 
 <style lang="scss">
@@ -358,7 +298,7 @@
   .data-container {
     max-width: 800px;
     margin: 24px auto 40px;
-    padding: 0 20px;
+    padding: 0 20px 50px 20px;
   }
 
   .data-section {
