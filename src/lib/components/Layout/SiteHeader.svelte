@@ -6,7 +6,7 @@ SiteHeader.svelte — Top navigation used across the site.
   import { base } from '$app/paths';
 
   let {
-    brandLabel = 'REPORTING BY JACK WALKER',
+    brandLabel = '[JACK-WALK]',
     websiteLabel = 'Website',
     websiteHref = 'https://jackwalker.xyz',
     githubLabel = 'Github',
@@ -31,7 +31,10 @@ SiteHeader.svelte — Top navigation used across the site.
             aria-hidden="true"
           />
         </a>
-        <span class="top-nav__brand-text top-nav__brand-text--mobile">{brandLabel}</span>
+      </div>
+
+      <div class="top-nav__section top-nav__section--center" aria-label="Site brand">
+        <span class="top-nav__brand-text">{brandLabel}</span>
       </div>
 
       <div class="top-nav__section top-nav__section--right">
@@ -56,7 +59,7 @@ SiteHeader.svelte — Top navigation used across the site.
 
   .top-nav {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     column-gap: 16px;
     padding: 8px 20px;
@@ -80,6 +83,11 @@ SiteHeader.svelte — Top navigation used across the site.
 
   .top-nav__section--left {
     justify-self: start;
+  }
+
+  .top-nav__section--center {
+    justify-self: center;
+    justify-content: center;
   }
 
   .top-nav__section--right {
@@ -112,16 +120,13 @@ SiteHeader.svelte — Top navigation used across the site.
   }
 
   .top-nav__brand-text {
+    font-size: 15px;
     font-weight: 700;
-    color: #000;
+    color: rgba(0, 0, 0, 0.72);
     white-space: nowrap;
     cursor: default;
     font-family: 'Montserrat', sans-serif;
-    display: none;
-  }
-
-  .top-nav__brand-text--mobile {
-    display: none;
+    display: inline-block;
   }
 
   .top-nav__bunny-image {
@@ -147,6 +152,11 @@ SiteHeader.svelte — Top navigation used across the site.
       padding: 8px 12px;
       font-size: 12px;
       gap: 10px;
+      grid-template-columns: 1fr auto 1fr;
+    }
+
+    .top-nav__brand-text {
+      font-size: 14px;
     }
 
     .top-nav__section {

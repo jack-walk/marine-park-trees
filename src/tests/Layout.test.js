@@ -7,7 +7,7 @@ import ButtonPair from '$lib/components/Layout/ButtonPair.svelte';
 describe('SiteHeader', () => {
   it('renders the top nav brand', () => {
     render(SiteHeader);
-    expect(screen.getByText('REPORTING BY JACK WALKER')).toBeTruthy();
+    expect(screen.getByText('[JACK-WALK]')).toBeTruthy();
   });
 
   it('renders default navigation links', () => {
