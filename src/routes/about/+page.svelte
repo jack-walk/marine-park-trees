@@ -30,12 +30,13 @@
 
     <h2>Repeat offenders</h2>
     <p>
-      Since January 2023, 41 addresses in zip code 11234 have had 5 or more complaints over
+      Since January 2023, <b>41 trees</b> in zip code 11234 have had 5 or more complaints over
       tree maintenance issues. Here is a map of some of the trees that have raised the most
-      concern from residents.
+      concern from residents, and their addresses.
     </p>
-    <h3 class="map-title"><b>Addresses with 5+ complaints since 2023:</b></h3>
-    <ComplaintsAddressMap incidents={data.dataset.marineParkIncidents} />
+        <center><hr class="section-divider" />
+    <h3 class="map-title"><b>Trees in the Marine Park zip code with 5+ complaints since 2023:</b></h3>
+    <ComplaintsAddressMap incidents={data.dataset.marineParkIncidents} /></center>
 
   </div>
 
@@ -335,6 +336,12 @@
   .data-section h2 {
     color: #566500;
     margin-top: 0;
+  }
+
+  .section-divider {
+    border: 0;
+    border-top: 1px solid rgba(86, 102, 0, 0.2);
+    margin: 12px 0 20px;
   }
 
   .stat {

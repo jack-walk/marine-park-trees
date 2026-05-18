@@ -3,7 +3,7 @@
 ComplaintsAddressMap.svelte — Interactive map showing tree complaint addresses
 
 Displays all addresses from Marine Park that have received 5 or more complaints.
-Each address is shown as a circle marker, clickable to reveal complaint count.
+Each address is shown as a small tree marker, clickable to reveal complaint count.
 
 USAGE EXAMPLE:
 <ComplaintsAddressMap incidents={marineParkIncidents} />
@@ -15,7 +15,7 @@ USAGE EXAMPLE:
   let { incidents = [] } = $props();
 
   /**
-   * Aggregate incidents by address and filter to those with 2+ complaints
+   * Aggregate incidents by address and filter to those with 5+ complaints
    */
   const addressCounts = $derived.by(() => {
     const counts = {};
@@ -95,30 +95,35 @@ USAGE EXAMPLE:
     latitude={mapCenter.latitude}
     longitude={mapCenter.longitude}
     zoom={13}
+    width={760}
+    height={570}
   >
     <MapLayer
       id="complaint-addresses"
-      type="circle"
+      type="symbol"
       data={geojsonData}
-      paint={{
-        'circle-radius': 8,
-        'circle-color': [
-          'interpolate',
-          ['linear'],
-          ['get', 'count'],
-          2,
-          '#d4e8d0',
-          5,
-          '#a8d58f',
-          10,
-          '#8bb627',
-          20,
-          '#566500',
+      images={[
+        { id: 'tree-marker-2', kind: 'tree', color: '#d4e8d0' },
+        { id: 'tree-marker-5', kind: 'tree', color: '#a8d58f' },
+        { id: 'tree-marker-10', kind: 'tree', color: '#8bb627' },
+        { id: 'tree-marker-20', kind: 'tree', color: '#566500' },
+      ]}
+      layout={{
+        'icon-image': [
+          'case',
+          ['>=', ['get', 'count'], 20],
+          'tree-marker-20',
+          ['>=', ['get', 'count'], 10],
+          'tree-marker-10',
+          ['>=', ['get', 'count'], 5],
+          'tree-marker-5',
+          'tree-marker-2',
         ],
-        'circle-opacity': 0.8,
-        'circle-stroke-width': 2,
-        'circle-stroke-color': '#ffffff',
-        'circle-stroke-opacity': 1,
+        'icon-size': 0.7,
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        'icon-anchor': 'bottom',
+        'icon-offset': [0, -1],
       }}
       popup={popupTemplate}
     />

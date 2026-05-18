@@ -42,6 +42,7 @@ USAGE EXAMPLE:
     data = { type: 'FeatureCollection', features: [] }, // GeoJSON data
     paint = {}, // MapLibre paint properties
     layout = {}, // MapLibre layout properties
+    images = [], // Optional image definitions to register with the map
     popup = null, // Optional function (feature) => htmlString
   } = $props();
 
@@ -62,6 +63,116 @@ USAGE EXAMPLE:
 
   /** Tracks the currently-open popup so we can close it when another click opens a new one. */
   let openPopup = null;
+  /** Tracks image ids added by this layer so they can be removed cleanly. */
+  let addedImageIds = [];
+
+  function hexToRgb(hex) {
+    const normalized = hex.replace('#', '');
+
+    if (normalized.length !== 6) {
+      return { r: 86, g: 102, b: 0 };
+    }
+
+    return {
+      r: Number.parseInt(normalized.slice(0, 2), 16),
+      g: Number.parseInt(normalized.slice(2, 4), 16),
+      b: Number.parseInt(normalized.slice(4, 6), 16),
+    };
+  }
+
+  function createTreeIconImageData(fillColor) {
+    const width = 32;
+    const height = 40;
+    const image =
+      typeof ImageData !== 'undefined'
+        ? new ImageData(width, height)
+        : {
+            width,
+            height,
+            data: new Uint8ClampedArray(width * height * 4),
+          };
+    const { r, g, b } = hexToRgb(fillColor);
+    const trunk = { r: 107, g: 74, b: 45 };
+
+    function setPixel(x, y, red, green, blue, alpha = 255) {
+      if (x < 0 || y < 0 || x >= width || y >= height) return;
+      const index = (y * width + x) * 4;
+      image.data[index] = red;
+      image.data[index + 1] = green;
+      image.data[index + 2] = blue;
+      image.data[index + 3] = alpha;
+    }
+
+    function fillCircle(cx, cy, radius, red, green, blue, alpha = 255) {
+      const radiusSquared = radius * radius;
+      for (let y = Math.floor(cy - radius); y <= Math.ceil(cy + radius); y += 1) {
+        for (let x = Math.floor(cx - radius); x <= Math.ceil(cx + radius); x += 1) {
+          const dx = x - cx;
+          const dy = y - cy;
+          if (dx * dx + dy * dy <= radiusSquared) {
+            setPixel(x, y, red, green, blue, alpha);
+          }
+        }
+      }
+    }
+
+    function fillRect(x, y, rectWidth, rectHeight, red, green, blue, alpha = 255) {
+      for (let row = y; row < y + rectHeight; row += 1) {
+        for (let col = x; col < x + rectWidth; col += 1) {
+          setPixel(col, row, red, green, blue, alpha);
+        }
+      }
+    }
+
+    function fillEllipse(cx, cy, radiusX, radiusY, red, green, blue, alpha = 255) {
+      const radiusXSquared = radiusX * radiusX;
+      const radiusYSquared = radiusY * radiusY;
+      for (let y = Math.floor(cy - radiusY); y <= Math.ceil(cy + radiusY); y += 1) {
+        for (let x = Math.floor(cx - radiusX); x <= Math.ceil(cx + radiusX); x += 1) {
+          const dx = x - cx;
+          const dy = y - cy;
+          if ((dx * dx) / radiusXSquared + (dy * dy) / radiusYSquared <= 1) {
+            setPixel(x, y, red, green, blue, alpha);
+          }
+        }
+      }
+    }
+
+    // Tree canopy.
+    fillCircle(16, 11, 8, r, g, b);
+    fillCircle(10, 17, 7, r, g, b);
+    fillCircle(22, 17, 7, r, g, b);
+    fillCircle(16, 21, 9, r, g, b);
+
+    // Trunk.
+    fillRect(13, 22, 6, 11, trunk.r, trunk.g, trunk.b);
+
+    // Shadow.
+    fillEllipse(16, 36, 7, 2.5, 0, 0, 0, 36);
+
+    return image;
+  }
+
+  function registerImages(map) {
+    addedImageIds = [];
+
+    for (const imageDefinition of images) {
+      if (!imageDefinition || typeof imageDefinition.id !== 'string' || !imageDefinition.id) {
+        continue;
+      }
+
+      const { id: imageId, kind, color = '#566500', options } = imageDefinition;
+
+      if (typeof map.hasImage === 'function' && map.hasImage(imageId)) {
+        map.removeImage(imageId);
+      }
+
+      if (kind === 'tree') {
+        map.addImage(imageId, createTreeIconImageData(color), options);
+        addedImageIds.push(imageId);
+      }
+    }
+  }
 
   /** Handles clicks on the layer: builds an HTML popup from the template function. */
   function handleClick(e) {
@@ -106,6 +217,8 @@ USAGE EXAMPLE:
       data,
     });
 
+    registerImages(map);
+
     map.addLayer({
       id: validatedId,
       type,
@@ -134,6 +247,13 @@ USAGE EXAMPLE:
 
     if (map.getLayer(validatedId)) map.removeLayer(validatedId);
     if (map.getSource(validatedId)) map.removeSource(validatedId);
+
+    for (const imageId of addedImageIds) {
+      if (typeof map.hasImage === 'function' && map.hasImage(imageId)) {
+        map.removeImage(imageId);
+      }
+    }
+    addedImageIds = [];
 
     if (openPopup) {
       openPopup.remove();

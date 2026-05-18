@@ -5,10 +5,13 @@ import Legend from '$lib/components/Maps/Legend.svelte';
 import Map from '$lib/components/Maps/Map.svelte';
 import ComplaintsAddressMap from '$lib/components/Maps/ComplaintsAddressMap.svelte';
 
+let lastMockMap = null;
+
 // Mock maplibre-gl so it doesn't try to use WebGL in jsdom
 vi.mock('maplibre-gl', () => {
   class MockMap {
     constructor() {
+      lastMockMap = this;
       this._listeners = {};
       this.on = vi.fn((event, fn) => {
         this._listeners[event] = this._listeners[event] || [];
@@ -42,6 +45,9 @@ vi.mock('maplibre-gl', () => {
       this.getLayer = vi.fn(() => null);
       this.addSource = vi.fn();
       this.addLayer = vi.fn();
+      this.addImage = vi.fn();
+      this.removeImage = vi.fn();
+      this.hasImage = vi.fn(() => false);
       this.removeSource = vi.fn();
       this.removeLayer = vi.fn();
       this.setPaintProperty = vi.fn();
@@ -637,6 +643,31 @@ describe('ComplaintsAddressMap', () => {
       },
     });
     expect(container).toBeTruthy();
+  });
+
+  it('renders the Repeat Offenders map at a fixed size with tree icons', async () => {
+    lastMockMap = null;
+
+    const incidents = Array.from({ length: 5 }, (_, i) => ({
+      'Incident Address': '123 Main St',
+      'Latitude': '40.618',
+      'Longitude': '-73.925',
+      'Created Date': `2026-05-0${i + 1}`,
+    }));
+
+    const { container } = render(ComplaintsAddressMap, {
+      props: {
+        incidents,
+      },
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 20));
+
+    const mapContainer = container.querySelector('.map-container');
+    expect(mapContainer).toBeTruthy();
+    expect(mapContainer.getAttribute('style')).toContain('width: 760px');
+    expect(mapContainer.getAttribute('style')).toContain('height: 570px');
+    expect(lastMockMap?.addImage).toHaveBeenCalled();
   });
 
   it('aggregates incidents by address', () => {
