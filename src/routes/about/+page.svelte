@@ -4,6 +4,7 @@
   import {
     formatComplaintPercentage,
     formatComplaintValue,
+    formatComplaintTypeLabel,
   } from '$lib/complaints-data.js';
 
   let { data } = $props();
@@ -30,7 +31,7 @@
       The zip code centered on Marine Park, 11234, records <strong>{formatComplaintValue(data.aboutData.marineParkRow.totalComplaints)}</strong> tree complaints in complaintsAll.csv, placing it <strong>#{data.aboutData.marineParkRow.rank}</strong> citywide among {data.dataset.rankedRows.length} zip code rows.
     </p>
     <p>
-      That total is dominated by power-line complaints: the zip recorded <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Power Line'])}</strong> reports in that category, while Hitting Building was recorded as <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Building'])}</strong>.
+      That total is dominated by power-line complaints: the zip recorded <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Power Line'])}</strong> reports in that category, while {formatComplaintTypeLabel('Hitting Building')} was recorded as <strong>{formatComplaintValue(data.aboutData.marineParkRow.complaintCounts['Hitting Building'])}</strong>.
     </p>
   </div>
 
@@ -53,7 +54,7 @@
     </div>
 
     <p style="margin-top: 20px;">
-      Across the full dataset, <strong>{data.aboutData.topComplaintType}</strong> is the most common complaint type.
+      Across the full dataset, <strong>{formatComplaintTypeLabel(data.aboutData.topComplaintType)}</strong> is the most common complaint type.
     </p>
   </div>
 
@@ -70,7 +71,7 @@
       <tbody>
         {#each data.dataset.complaintTypes as complaintType}
           <tr>
-            <td>{complaintType}</td>
+            <td>{formatComplaintTypeLabel(complaintType)}</td>
             <td>{formatComplaintValue(data.aboutData.overallComplaintTotals[complaintType])}</td>
             <td>{formatComplaintPercentage(data.aboutData.overallComplaintPercentages[complaintType])}</td>
           </tr>

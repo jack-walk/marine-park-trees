@@ -13,7 +13,7 @@ This is your page!
 	const subheadline =
 		'A new data investigation reveals that the neighborhood ranks first in tree service requests. Residents worry that city officials are overlooking risks to safety and property.';
 
-	const byline = 'By <strong><a href="https://jackwalker.xyz">Jack Walker</a></strong> | May TK, 2026';
+	const byline = 'By <strong><a href="https://jackwalker.xyz">Jack Walker</a></strong> | May 17, 2026';
 
 	const buttonPair = [
 		{

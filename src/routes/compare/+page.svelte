@@ -5,6 +5,7 @@
     COMPLAINT_TYPES,
     formatComplaintPercentage,
     formatComplaintValue,
+    formatComplaintTypeLabel,
     normalizeText,
     searchComplaintDataset,
   } from '$lib/complaints-data.js';
@@ -49,10 +50,6 @@
         label: `Zip Code ${row.zipCode}`,
         detail: `${row.neighborhood} • ${row.borough}`,
       });
-
-      if (matches.length === 6) {
-        break;
-      }
     }
 
     return matches;
@@ -62,15 +59,16 @@
     submittedQuery = value.trim();
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    submitSearch(query);
-  }
-
   function selectSuggestion(value) {
     query = value;
     submitSearch(value);
   }
+
+  $effect(() => {
+    if (submittedQuery && normalizeText(query) !== normalizeText(submittedQuery)) {
+      submittedQuery = '';
+    }
+  });
 
   function complaintPercent(count, total) {
     if (!Number.isFinite(count) || !Number.isFinite(total) || total === 0) {
@@ -84,22 +82,28 @@
     const percentage = complaintPercent(count, total);
     return percentage == null ? 0 : percentage;
   }
+
+  function availableComplaintTypes(row) {
+    return COMPLAINT_TYPES.filter((type) => Number.isFinite(row.complaintCounts[type]));
+  }
 </script>
 
 <svelte:head>
-  <title>Compare Neighborhoods and Zip Codes - Tree Complaints</title>
+  <title>Compare tree complaints by NYC zip code</title>
 </svelte:head>
 
 <div class="zip-comparison-tool">
   <ButtonPair buttons={backButtons} className="back-button-wrap" />
 
-  <h1>View tree complaints in your zip code</h1>
+  <h1>How does my neighborhood compare?</h1>
   <p>
-    See how many 311 complaints over tree maintenance issues have been filed where you live since 2020.
+    Zip code 11234, which includes the neighborhood of Marine Park, files more 311 complaints 
+    <a href="https://jack-walk.github.io/marine-park-trees/">over tree maintenance issues</a> 
+    than any other neighborhood in New York City. See how many tree complaints your neighborhood has filed with the city's 311 service line since 2020.
   </p>
 
-  <form class="search-section" onsubmit={handleSubmit}>
-    <label for="zip-code-input">Enter your zip code Or neighborhood.</label>
+  <div class="search-section">
+    <label for="zip-code-input">Enter your zip code or neighborhood.</label>
     <div class="search-input-wrap">
       <input
         type="text"
@@ -110,7 +114,7 @@
         bind:value={query}
       />
 
-      {#if suggestions.length}
+      {#if suggestions.length && !submittedQuery}
         <div class="suggestions-box">
           {#each suggestions as suggestion (suggestion.value)}
             <button
@@ -127,8 +131,7 @@
         </div>
       {/if}
     </div>
-    <button id="search-btn" class="search-btn" type="submit">Search</button>
-  </form>
+  </div>
 
   {#if searchResult}
     <div class="results-section">
@@ -136,18 +139,14 @@
         <section class="zip-result-card zip-result-card--summary">
           <div class="zip-result-summary">
             <div>
-              <div class="zip-result-kicker">Search summary</div>
+              <div class="zip-result-kicker">Your Zip Code</div>
               <h2 class="zip-result-title">{searchResult.summaryLabel}</h2>
-              <p class="zip-result-subtitle">{searchResult.summarySubtitle}</p>
             </div>
 
             <div class="zip-result-meta">
               <div class="zip-result-total">{formatComplaintValue(searchResult.summaryTotalComplaints)}</div>
               <div class="zip-result-meta-label">Total complaints</div>
-              {#if searchResult.summaryRank}
-                <div class="zip-result-meta-rank">{searchResult.summaryRank.value}</div>
-                <div class="zip-result-meta-rank">{searchResult.summaryRank.detail}</div>
-              {/if}
+              <div class="zip-result-meta-since">since {data.sinceDateLabel}</div>
             </div>
           </div>
 
@@ -159,8 +158,6 @@
             </div>
           {/if}
 
-          <p class="search-summary-note">{searchResult.summaryNote}</p>
-
           <div class="complaints-by-type">
             <h3>Complaints by Type</h3>
             <div class="complaints-list">
@@ -170,11 +167,10 @@
 
                 <div class="complaint-section-card">
                   <div class="complaint-section-header">
-                    <span class="complaint-section-title">{complaintType}</span>
+                    <span class="complaint-section-title">{formatComplaintTypeLabel(complaintType)}</span>
                     <span class="complaint-section-total">
                       {#if Number.isFinite(count)}
                         {formatComplaintValue(count)} complaints
-                        ({formatComplaintPercentage(complaintPercent(count, searchResult.summaryTotalComplaints))})
                       {:else}
                         Data not available
                       {/if}
@@ -197,19 +193,15 @@
                 <div class="zip-result-summary">
                   <div>
                     <div class="zip-result-kicker">
-                      {group.rows.length > 1 ? 'Neighborhood group' : 'Zip code row'}
+                      {group.rows.length > 1 ? 'Your neighborhood' : 'Zip code row'}
                     </div>
                     <h3 class="zip-result-title">{group.label}</h3>
-                    <p class="zip-result-subtitle">{group.subtitle}</p>
                   </div>
 
                   <div class="zip-result-meta">
                     <div class="zip-result-total">{formatComplaintValue(group.totalComplaints)}</div>
-                    <div class="zip-result-meta-label">Complaints</div>
-                    {#if group.rank}
-                      <div class="zip-result-meta-rank">{group.rank.value}</div>
-                      <div class="zip-result-meta-rank">{group.rank.detail}</div>
-                    {/if}
+                    <div class="zip-result-meta-label">Total complaints</div>
+                    <div class="zip-result-meta-since">since {data.sinceDateLabel}</div>
                   </div>
                 </div>
 
@@ -222,11 +214,10 @@
 
                       <div class="complaint-section-card">
                         <div class="complaint-section-header">
-                          <span class="complaint-section-title">{complaintType}</span>
+                          <span class="complaint-section-title">{formatComplaintTypeLabel(complaintType)}</span>
                           <span class="complaint-section-total">
                             {#if Number.isFinite(count)}
                               {formatComplaintValue(count)} complaints
-                              ({formatComplaintPercentage(complaintPercent(count, group.totalComplaints))})
                             {:else}
                               Data not available
                             {/if}
@@ -245,25 +236,36 @@
                   <div class="zip-breakdown">
                     <h3>Zip Code Breakdown</h3>
                     {#each group.rows as row (row.zipCode)}
-                      <div class="complaint-section-card">
-                        <div class="complaint-section-header">
-                          <span class="complaint-section-title">Zip Code {row.zipCode}</span>
-                          <span class="complaint-section-total">
-                            {formatComplaintValue(row.totalComplaints)} complaints
-                          </span>
-                        </div>
+                      {@const visibleComplaintTypes = availableComplaintTypes(row)}
 
-                        <div class="complaint-subitems">
-                          {#each COMPLAINT_TYPES as complaintType}
-                            <div class="complaint-subitem">
-                              <span class="complaint-subitem-label">{complaintType}</span>
-                              <span class="complaint-subitem-value">
-                                {formatComplaintValue(row.complaintCounts[complaintType])}
-                              </span>
-                            </div>
-                          {/each}
+                      {#if visibleComplaintTypes.length}
+                        <div class="complaint-section-card">
+                          <div class="complaint-section-header">
+                            <span class="complaint-section-title">Zip Code {row.zipCode}</span>
+                            <span class="complaint-section-total">
+                              {formatComplaintValue(row.totalComplaints)} complaints
+                            </span>
+                          </div>
+
+                          <div class="complaint-subitems">
+                            {#each visibleComplaintTypes as complaintType}
+                              <div class="complaint-subitem">
+                                <span class="complaint-subitem-label">{formatComplaintTypeLabel(complaintType)}</span>
+                                <span class="complaint-subitem-value">
+                                  {formatComplaintValue(row.complaintCounts[complaintType])}
+                                </span>
+                              </div>
+                            {/each}
+                          </div>
                         </div>
-                      </div>
+                      {:else}
+                        <div class="complaint-section-card complaint-section-card--no-data">
+                          <div class="complaint-section-header">
+                            <span class="complaint-section-title">Zip Code {row.zipCode}</span>
+                            <span class="complaint-section-total no-data">Data not available</span>
+                          </div>
+                        </div>
+                      {/if}
                     {/each}
                   </div>
                 {/if}
@@ -277,24 +279,5 @@
     <div class="no-results-section">
       <p>No data found for this zip code or neighborhood. Please try another search.</p>
     </div>
-  {:else}
-    <div class="search-help">
-      Start with a 5-digit zip code like 11234, or type a neighborhood name like Marine Park.
-    </div>
   {/if}
 </div>
-
-<style lang="scss">
-  .zip-comparison-tool {
-    margin-top: 24px;
-  }
-
-  .search-help {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-  }
-</style>

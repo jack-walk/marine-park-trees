@@ -1,6 +1,6 @@
 const COMPLAINT_TYPES = [
   'Blocking Street',
-  'Clear Street Light',
+  'Blocking Streetlight',
   'Dead Branches in Tree',
   'Hitting Building',
   'Hitting Power Line',
@@ -87,10 +87,28 @@ function formatPercentage(value) {
   return `${value.toFixed(1)}%`;
 }
 
-function buildComplaintCounts(row) {
-  return Object.fromEntries(
+function buildComplaintCounts(row, totalComplaints) {
+  const complaintCounts = Object.fromEntries(
     COMPLAINT_TYPES.map((type) => [type, parseNumber(row[type])])
   );
+
+  const missingTypes = COMPLAINT_TYPES.filter((type) => complaintCounts[type] == null);
+
+  if (
+    missingTypes.length === 1 &&
+    missingTypes[0] === 'Clear Street Light' &&
+    Number.isFinite(totalComplaints)
+  ) {
+    const otherTotals = COMPLAINT_TYPES.filter((type) => type !== 'Clear Street Light').map(
+      (type) => complaintCounts[type]
+    );
+
+    if (otherTotals.every(Number.isFinite)) {
+      complaintCounts['Clear Street Light'] = totalComplaints - otherTotals.reduce((sum, value) => sum + value, 0);
+    }
+  }
+
+  return complaintCounts;
 }
 
 function createRowRecord(rawRow) {
@@ -101,7 +119,7 @@ function createRowRecord(rawRow) {
     neighborhood: String(rawRow.Neighborhood ?? '').trim(),
     borough: String(rawRow.Borough ?? '').trim(),
     totalComplaints,
-    complaintCounts: buildComplaintCounts(rawRow),
+    complaintCounts: buildComplaintCounts(rawRow, totalComplaints),
     raw: rawRow,
     searchableText: normalizeText([rawRow['Zip Code'], rawRow.Neighborhood].join(' ')),
   };
@@ -271,6 +289,21 @@ function formatComplaintPercentage(value) {
   return Number.isFinite(value) ? formatPercentage(value) : 'Data not available';
 }
 
+function formatComplaintTypeLabel(value) {
+  const labels = {
+    'Blocking Street': 'Blocking street',
+    'Blocking Streetlight': 'Blocking streetlight',
+    'Clear Street Light': 'Blocking streetlight',
+    'Dead Branches in Tree': 'Dead branches',
+    'Hitting Building': 'Hitting building',
+    'Hitting Power Line': 'Hitting power line',
+    'Hitting Power Lines': 'Hitting power line',
+    'Traffic Sign or Signal Blocked': 'Blocking traffic light',
+  };
+
+  return labels[value] ?? value;
+}
+
 function searchComplaintDataset(dataset, query) {
   const trimmed = String(query ?? '').trim();
   const zipCode = normalizeZip(trimmed);
@@ -419,6 +452,7 @@ export {
   buildDataset,
   formatComplaintPercentage,
   formatComplaintValue,
+  formatComplaintTypeLabel,
   normalizeText,
   normalizeZip,
   parseCsv,

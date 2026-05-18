@@ -180,7 +180,7 @@ import { fileURLToPath } from 'node:url';
 
 const COMPLAINT_TYPES = [
   'Blocking Street',
-  'Clear Street Light',
+  'Blocking Streetlight',
   'Dead Branches in Tree',
   'Hitting Building',
   'Hitting Power Line',

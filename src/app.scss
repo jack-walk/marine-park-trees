@@ -391,6 +391,7 @@ section.last {
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
+  padding-bottom: 100px;
 }
 
 .zip-comparison-tool h1 {
@@ -405,7 +406,7 @@ section.last {
   color: #333;
   font-size: 16px;
   line-height: 1.45;
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
@@ -458,31 +459,6 @@ section.last {
   background-color: #fffef5;
 }
 
-.search-btn {
-  padding: 12px 30px;
-  background-color: #566500;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-bottom: 0;
-  vertical-align: middle;
-}
-
-.search-btn:hover {
-  background-color: #478bb8;
-}
-
-.search-btn:active {
-  transform: scale(0.98);
-}
-
 .suggestions-box {
   position: absolute;
   top: calc(100% + 6px);
@@ -493,9 +469,25 @@ section.last {
   border: 1px solid #d9d9d9;
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  max-height: 260px;
-  overflow-y: auto;
+  max-height: 172px;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   padding: 6px;
+}
+
+.suggestions-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.suggestions-box::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 999px;
+}
+
+.suggestions-box::-webkit-scrollbar-thumb {
+  background: #b8b8b8;
+  border-radius: 999px;
+  border: 2px solid #f0f0f0;
 }
 
 .suggestion-item {
@@ -613,16 +605,16 @@ section.last {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .result-tag {
   background-color: #eaf0e5;
   color: #566500;
   border-radius: 999px;
-  padding: 6px 10px;
-  font-size: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
   font-weight: bold;
   white-space: nowrap;
 }
@@ -706,6 +698,10 @@ section.last {
   margin-bottom: 12px;
 }
 
+.complaint-section-card--no-data {
+  background-color: #fafafa;
+}
+
 .complaint-section-header {
   display: flex;
   justify-content: space-between;
@@ -763,7 +759,7 @@ section.last {
 .zip-result-card {
   background-color: #fff;
   border: 1px solid #e0e0e0;
-  border-left: 5px solid #566500;
+  border-left: 3px solid #566500;
   border-radius: 8px;
   padding: 18px;
   margin-bottom: 18px;
@@ -803,8 +799,11 @@ section.last {
 }
 
 .zip-result-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   text-align: right;
-  min-width: 160px;
+  min-width: 130px;
 }
 
 .zip-result-total {
@@ -815,17 +814,22 @@ section.last {
 }
 
 .zip-result-meta-label {
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #999;
-  margin-top: 4px;
+  margin-top: 0;
+  line-height: 1.15;
 }
 
-.zip-result-meta-rank {
+.zip-result-meta-since {
   font-size: 13px;
   color: #666;
-  margin-top: 8px;
+  font-style: italic;
+  margin-top: 0;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .zip-result-sections {
@@ -1050,14 +1054,117 @@ section.last {
     width: 100%;
   }
 
+  .search-input-wrap {
+    display: block;
+    width: 100%;
+    max-width: calc(100% - 24px);
+    margin-bottom: 12px;
+  }
+
   .zip-code-input {
     width: 100%;
     margin-right: 0;
     margin-bottom: 10px;
   }
 
-  .search-btn {
-    width: 100%;
+  .zip-comparison-tool {
+    margin-top: 24px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .zip-comparison-tool h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .zip-comparison-tool > p {
+    margin-bottom: 18px;
+    font-size: 15px;
+  }
+
+  .search-section {
+    padding: 18px 14px;
+    margin-bottom: 18px;
+  }
+
+  .search-section label {
+    margin-bottom: 10px;
+  }
+
+  .search-input-wrap {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  .suggestions-box {
+    max-height: 180px;
+  }
+
+  .results-section {
+    margin-top: 18px;
+  }
+
+  .results-content {
+    padding: 16px;
+  }
+
+  .search-results-list {
+    margin-top: 12px;
+  }
+
+  .zip-result-card {
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .zip-result-card--nested {
+    margin-top: 10px;
+  }
+
+  .zip-result-summary {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .zip-result-title {
+    font-size: 18px;
+  }
+
+  .zip-result-meta {
+    min-width: 0;
+    text-align: left;
+  }
+
+  .zip-result-total {
+    font-size: 24px;
+  }
+
+  .zip-result-meta-rank {
+    margin-top: 6px;
+  }
+
+  .complaints-by-type {
+    margin-top: 18px;
+  }
+
+  .complaints-by-type h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .complaint-section-card {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .complaint-section-header {
+    margin-bottom: 8px;
+  }
+
+  .complaint-subitems {
+    gap: 6px;
   }
 
   .complaint-type-info {
