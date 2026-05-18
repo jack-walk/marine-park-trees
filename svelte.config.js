@@ -34,6 +34,11 @@ const config = {
       base: process.env.BASE_PATH || '',
       relative: false,
     },
+    // Prerender configuration: allow 404 responses to continue instead of failing
+    // Helps avoid prerender failures when a request path doesn't match `paths.base`.
+    prerender: {
+      handleHttpError: ({ status }) => (status === 404 ? 'continue' : 'fail'),
+    },
   },
 };
 
