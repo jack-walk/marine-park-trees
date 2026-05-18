@@ -12,7 +12,7 @@ describe('SiteHeader', () => {
 
   it('renders default navigation links', () => {
     render(SiteHeader);
-    expect(screen.getByText('Website')).toBeTruthy();
+    expect(screen.getByText('LinkedIn')).toBeTruthy();
     expect(screen.getByText('Github')).toBeTruthy();
   });
 
@@ -31,8 +31,8 @@ describe('SiteHeader', () => {
   it('renders custom navigation links', () => {
     render(SiteHeader, {
       props: {
-        websiteLabel: 'Portfolio',
-        websiteHref: 'https://example.com',
+        linkedinLabel: 'Portfolio',
+        linkedinHref: 'https://example.com',
       },
     });
     expect(screen.getByText('Portfolio')).toBeTruthy();
